@@ -1,11 +1,48 @@
+
 .game-control {
-  background: red;
+  background: #e6b145;
   width: 100%;
   height: 100vh;
 }
 
+.game-title {
+  font-family: 'Barriecito', cursive;
+  font-weight: normal;
+  text-align: center;
+  font-size: 5em;
+  margin-top: 10px;
+  width: 100%;
+  height: auto;
+  letter-spacing: 2px;
+}
+
+.user-container {
+  text-align: center;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+}
+
+.user-pic {
+  width: auto;
+  max-height: 200px;
+}
+
+.user-pic img {
+  border: 1px solid #000;
+  width: auto;
+  text-align: center;
+  max-height: 170px;
+}
+
+.user-name {
+  height: 50px;
+  margin-top: 10px;
+  font-family: 'Fjalla One', sans-serif;
+}
+
 .game-board {
-  background: blue;
+  background: #e2eea9;
   width: 100%;
   height: 100vh;
 }
@@ -20,9 +57,17 @@
     perspective: 500px;
 }
 
+.game-info-container {
+    grid-column: 1 / -1;
+    display: flex;
+    justify-content: space-between;
+    padding: 0px 50px;
+    margin: 0px 50px;
+}
+
 .game-info {
-    font-family: Lunacy, serif;
-    color: #FFBB89;
+    font-family: 'Barriecito', cursive;
+    color: #2f1818;
     font-size: 2em;
     text-align: center;
     padding-top: 10px;
@@ -31,13 +76,43 @@
 .card {
     position: relative;
     height: 130px;
-    width: 100px;
+    width: 120px;
     background: none !important;
+    border: 4px solid #e6b145;
+    border-radius: 17px;
 }
 
 .card-back {
     background: black;
-    border-color: #FF6D00;
+}
+
+.card-back img {
+    height: 80%;
+    width: auto;
+}
+
+.card-front {
+    transform: rotateY(180deg);
+    background: #2f1818;
+    border-color: #333333;
+}
+
+.card-front img {
+    height: 100%;
+    width: auto;
+}
+
+.card.visible .card-back {
+    transform: rotateY(-180deg);
+}
+
+.card.visible .card-front {
+    transform: rotateY(0);
+}
+
+.card:hover .card-back img {
+  transform: scale(1.2);
+  transition: transform 500ms ease-in-out;
 }
 
 .card-face {
@@ -52,4 +127,92 @@
     border-radius: 12px;
     border-width: 1px;
     border-style: solid;
+    transition: transform 500ms ease-in-out;
+}
+
+.level-container {
+  text-align: center;
+}
+
+.level {
+  box-sizing: border-box;
+  display: inline-block;
+  margin: 10px;
+  width: 70px;
+  height: 70px;
+  border: 2px solid;
+  border-radius: 50%;
+  padding: 20px 0px;
+  background-color: grey;
+}
+
+.level-text {
+  font-weight: bold;
+}
+
+.controls-container {
+  margin-top: 20px;
+  text-align: center;
+}
+
+i {
+  color: black;
+  font-size: 200%;
+  margin: 0px 20px;
+  border: 1px solid black;
+  border-radius: 50%;
+  box-sizing: border-box;
+  width: 50px;
+  height: 50px;
+  padding: 8px;
+}
+
+
+@media (max-width: 767px) {
+    .game-board {
+      height: 100vh;
+    }
+
+    .game-container {
+      grid-template-columns: repeat(3, auto);
+      grid-gap: 10px;
+    }
+
+    .game-info-container {
+        align-items: center;
+        margin: 10px 0px 0px;
+        padding: 0px 10px;
+        font-size: 80%;
+    }
+
+    .card {
+      width: 70px;
+      height: 75px;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1000px) {
+    .game-title {
+      font-size: 3.5em;
+    }
+
+    .game-container {
+      grid-template-columns: repeat(3, auto);
+    }
+
+    .user-pic img {
+      max-height: 150px;
+      width: auto;
+    }
+
+    .card {
+      width: 100px;
+      height: 110px;
+    }
+}
+
+@media (min-width: 1001px) and (max-width: 1065px) {
+    .game-title {
+      font-size: 4em;
+    }
 }
