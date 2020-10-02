@@ -1,0 +1,47 @@
+.game-control {
+  background: red;
+  width: 100%;
+  height: 100vh;
+}
+
+.game-board {
+  background: blue;
+  width: 100%;
+  height: 100vh;
+}
+
+.game-container {
+    display: grid;
+    grid-template-columns: repeat(4, auto);
+    grid-gap: 15px;
+    padding: 15px;
+    justify-content: center;
+    align-items: center;
+    perspective: 500px;
+}
+
+.card {
+    position: relative;
+    height: 130px;
+    width: 100px;
+    background: none !important;
+}
+
+.card-back {
+    background: black;
+    border-color: #FF6D00;
+}
+
+.card-face {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    backface-visibility: hidden;
+    border-radius: 12px;
+    border-width: 1px;
+    border-style: solid;
+}
