@@ -20,6 +20,14 @@
     perspective: 500px;
 }
 
+.game-info {
+    font-family: Lunacy, serif;
+    color: #FFBB89;
+    font-size: 2em;
+    text-align: center;
+    padding-top: 10px;
+}
+
 .card {
     position: relative;
     height: 130px;
