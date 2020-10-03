@@ -1,4 +1,7 @@
-
+html {
+    min-height: 100vh;
+    cursor: url("assets/cursors/africa.cur"), auto;
+}
 
 body {
   font-family: 'Barriecito', cursive;
@@ -19,6 +22,41 @@ body {
   width: 100%;
   height: auto;
   letter-spacing: 3px;
+}
+
+.overlay-text {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+    color: #FF6D00;
+    font-family: 'Barriecito', cursive;
+    display: none;
+}
+
+.overlay-text-small {
+    font-size: 0.3em;
+}
+
+.overlay-text.visible {
+    display: flex;
+    flex-direction: column;
+    animation: overlay-grow 500ms forwards;
+}
+
+@keyframes overlay-grow {
+    from {
+        background-color: rgba(0, 0, 0, 0);
+        font-size: 0;
+    }
+    to {
+        font-size: 10em;
+        background-color: rgba(0, 0, 0, 0.8);
+    }
 }
 
 .user-container {
@@ -103,6 +141,7 @@ body {
 .card-back img {
     height: 80%;
     width: auto;
+    transform: scale(1);
 }
 
 .card-front {
