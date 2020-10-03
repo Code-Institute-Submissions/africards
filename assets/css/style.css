@@ -29,14 +29,14 @@ body {
 }
 
 .user-pic {
-  width: 60%;
+  max-width: 60%;
   height: auto;
   margin: 0% 20%;
 }
 
 .user-pic img {
   border: 1px solid #000;
-  width: 100%;
+  max-width: 100%;
   text-align: center;
   height: auto;
 }
