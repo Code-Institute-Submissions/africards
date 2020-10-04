@@ -10,7 +10,6 @@ var flipCount = 0;
 $(document).ready(function() {
 
 
-
 /** Function for the Light-Dark Theme Toggle **/
   $("#theme-toggle").click(function() {
     var lightDarkSwitch = $("#stylesheet");
@@ -22,4 +21,5 @@ $(document).ready(function() {
       console.log($("#stylesheet").attr("href"));
     }
   });
+  
 })
