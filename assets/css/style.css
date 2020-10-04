@@ -1,6 +1,6 @@
 html {
     min-height: 100vh;
-    cursor: url("assets/cursors/africa.cur"), auto;
+    cursor: url("../cursors/africa.cur"), auto;
 }
 
 body {
@@ -93,6 +93,89 @@ body {
   margin: 0% 20% 2%;
 }
 
+/* ----------------------------------------------------------------- Game Level */
+
+.level-container {
+  text-align: center;
+}
+
+.level {
+  box-sizing: border-box;
+  display: inline-block;
+  margin: 15px 10px 10px;
+  width: 70px;
+  height: 70px;
+  border: 2px solid;
+  border-radius: 50%;
+  padding: 20px 0px;
+  background-color: #e6b145;
+}
+
+.level-text {
+  font-weight: bold;
+}
+
+.controls-container {
+  margin-top: 10px;
+  text-align: center;
+}
+
+.controls-container i {
+  font-size: 200%;
+  margin: 0px 20px;
+  border: 1px solid black;
+  border-radius: 50%;
+  box-sizing: border-box;
+  width: 50px;
+  height: 50px;
+  padding: 8px;
+}
+
+/* ----------------------------------------------------------------- Light/Dark Mode Toggle */
+
+.theme-toggle-container {
+  text-align: center;
+  margin-top: 50px;
+}
+
+.theme-toggle {
+	opacity: 0;
+	position: absolute;
+  padding: 40px;
+}
+
+.label {
+	background-color: #111;
+  color: #e6b145;
+	border-radius: 50px;
+	cursor: pointer;
+	align-items: center;
+	justify-content: space-between;
+	padding: 2px;
+	position: relative;
+	height: 26px;
+	width: 50px;
+	transform: scale(1.5);
+}
+
+.label .switch {
+	background-color: #fff;
+	border-radius: 50%;
+	position: absolute;
+	top: 2px;
+	left: 2px;
+	height: 22px;
+	width: 22px;
+	transform: translateX(0px);
+	transition: transform 0.2s linear;
+}
+
+.theme-toggle:checked + .label .switch {
+	transform: translateX(24px);
+}
+
+/* ----------------------------------------------------------------- Game Board Container */
+
 .game-board {
   background: #e2eea9;
   width: 100%;
@@ -135,7 +218,7 @@ body {
 }
 
 .card-back {
-    background: black;
+    background: #000;
 }
 
 .card-back img {
@@ -208,11 +291,11 @@ body {
   text-align: center;
 }
 
-i {
-  color: black;
+.controls-container i {
+  color: #000;
   font-size: 200%;
   margin: 0px 20px;
-  border: 1px solid black;
+  border: 1px solid #000;
   border-radius: 50%;
   box-sizing: border-box;
   width: 50px;
