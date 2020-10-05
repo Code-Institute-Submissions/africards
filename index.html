@@ -1,230 +1,223 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-  <link href="https://fonts.googleapis.com/css2?family=Barriecito&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0-11/css/all.min.css" />
-  <link id="stylesheet" rel="stylesheet" href="assets/css/style.css"><script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
-  <title>Africards</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Barriecito&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0-11/css/all.min.css" />
+    <link id="stylesheet" rel="stylesheet" href="assets/css/style.css"><script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <title>Africards</title>
 </head>
 <body>
-  <!-- Game Over -->
-  <div id="game-over-text" class="container-fluid overlay-text">
-    GAME OVER
-    <span class="overlay-text-small">Click to Restart</span>
-  </div>
-  <!-- /Game Over -->
-  <!-- Game Win -->
-  <div id="victory-text" class="container-fluid overlay-text">
-    VICTORY!
-    <span class="overlay-text-small">Click to Restart</span>
-  </div>
-  <!-- /Game Win -->
-  <!-- Game Control Panel -->
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-xs-12 col-md-4 game-control">
-        <h1 class="game-title">
-          Africards
-        </h1>
-        <div class="user-container">
-          <h2 class="user-name">
-            Welcome, <span id="userName">Jesse </span>
-          </h2>
-          <div class="user-pic">
-            <img src="assets/images/flags/south-africa.png" alt="User's game profile picture">
-          </div>
-          <div class="game-country">
-            <span id="country"><h4>South Africa</h4></span>
-          </div>
-        </div>
-        <!-- Game Level Selector -->
-        <div class="level-container">
-          <div id="easy" class="level">
-            <p class="level-text">Easy</p>
-          </div>
-          <div id="medium" class="level">
-            <p class="level-text">Med</p>
-          </div>
-          <div id="hard" class="level">
-            <p class="level-text">Hard</p>
-          </div>
-        </div>
-        <!-- /Game Level Selector -->
-        <div class="controls-container">
-          <div class="controls-icons">
-            <i class="fas fa-volume-down"></i>
-            <i class="fas fa-info"></i>
-          </div>
-        </div>
-        <div class="theme-toggle-container">
-          <input type="checkbox" class="theme-toggle" id="theme-toggle">
-          <label class="label" for="theme-toggle">
-            <i class="fas fa-sun"></i>
-            <i class="fas fa-moon"></i>
-            <div class="switch"></div>
-          </label>
-        </div>
-      </div>
-      <!-- /Game Control Panel -->
-      <!-- Game Board Container -->
-      <div class="col-xs-12 col-md-8 game-board">
-        <!-- Game Information -->
-        <div class="game-info-container">
-          <div class="game-info">
-            Time <span id="time-remaining">60</span>
-          </div>
-          <div class="game-info">
-            Flips <span id="flips">0</span>
-          </div>
-        </div>
-        <!-- /Game Information -->
-        <!-- Game Cards Container -->
-        <div class="game-cards-container">
-          <div class="card">
-            <div class="card-back card-face">
-              <img src="assets/images/world.png" alt="">
-            </div>
-            <div class="card-front card-face">
-              <img src="assets/images/south-africa/one.jpg" alt="">
-            </div>
-          </div>
-          <div class="card">
-            <div class="card-back card-face">
-              <img src="assets/images/world.png" alt="">
-            </div>
-            <div class="card-front card-face">
-              <img src="assets/images/south-africa/one.jpg" alt="">
-            </div>
-          </div>
-          <div class="card">
-            <div class="card-back card-face">
-              <img src="assets/images/world.png" alt="">
-            </div>
-            <div class="card-front card-face">
-              <img src="assets/images/south-africa/two.jpg" alt="">
-            </div>
-          </div>
-          <div class="card">
-            <div class="card-back card-face">
-              <img src="assets/images/world.png" alt="">
-            </div>
-            <div class="card-front card-face">
-              <img src="assets/images/south-africa/two.jpg" alt="">
-            </div>
-          </div>
-          <div class="card">
-            <div class="card-back card-face">
-              <img src="assets/images/world.png" alt="">
-            </div>
-            <div class="card-front card-face">
-              <img src="assets/images/south-africa/six.jpg" alt="">
-            </div>
-          </div>
-          <div class="card">
-            <div class="card-back card-face">
-              <img src="assets/images/world.png" alt="">
-            </div>
-            <div class="card-front card-face">
-              <img src="assets/images/south-africa/six.jpg" alt="">
-            </div>
-          </div>
-          <div class="card">
-            <div class="card-back card-face">
-              <img src="assets/images/world.png" alt="">
-            </div>
-            <div class="card-front card-face">
-              <img src="assets/images/south-africa/three.jpg" alt="">
-            </div>
-          </div>
-          <div class="card">
-            <div class="card-back card-face">
-              <img src="assets/images/world.png" alt="">
-            </div>
-            <div class="card-front card-face">
-              <img src="assets/images/south-africa/three.jpg" alt="">
-            </div>
-          </div>
-          <div class="card">
-            <div class="card-back card-face">
-              <img src="assets/images/world.png" alt="">
-            </div>
-            <div class="card-front card-face">
-              <img src="assets/images/south-africa/four.jpg" alt="">
-            </div>
-          </div>
-          <div class="card">
-            <div class="card-back card-face">
-              <img src="assets/images/world.png" alt="">
-            </div>
-            <div class="card-front card-face">
-              <img src="assets/images/south-africa/four.jpg" alt="">
-            </div>
-          </div>
-          <div class="card">
-            <div class="card-back card-face">
-              <img src="assets/images/world.png" alt="">
-            </div>
-            <div class="card-front card-face">
-              <img src="assets/images/south-africa/five.jpg" alt="">
-            </div>
-          </div>
-          <div class="card">
-            <div class="card-back card-face">
-              <img src="assets/images/world.png" alt="">
-            </div>
-            <div class="card-front card-face">
-              <img src="assets/images/south-africa/five.jpg" alt="">
-            </div>
-          </div>
-          <div class="card">
-            <div class="card-back card-face">
-              <img src="assets/images/world.png" alt="">
-            </div>
-            <div class="card-front card-face">
-              <img src="assets/images/south-africa/seven.jpg" alt="">
-            </div>
-          </div>
-          <div class="card">
-            <div class="card-back card-face">
-              <img src="assets/images/world.png" alt="">
-            </div>
-            <div class="card-front card-face">
-              <img src="assets/images/south-africa/seven.jpg" alt="">
-            </div>
-          </div>
-          <div class="card">
-            <div class="card-back card-face">
-              <img src="assets/images/world.png" alt="">
-            </div>
-            <div class="card-front card-face">
-              <img src="assets/images/south-africa/eight.jpg" alt="">
-            </div>
-          </div>
-          <div class="card">
-            <div class="card-back card-face">
-              <img src="assets/images/world.png" alt="">
-            </div>
-            <div class="card-front card-face">
-              <img src="assets/images/south-africa/eight.jpg" alt="">
-            </div>
-          </div>
-        </div>
-        <!-- /Game Cards Container -->
-      </div>
-      <!-- /Game Board Container -->
+    <!-- Game Over -->
+    <div id="game-over-text" class="container-fluid overlay-text">
+        GAME OVER
+        <span class="overlay-text-small">Click to Restart</span>
     </div>
-
-  </div>
-  <!-- Bootstrap script cdn -->
-  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-  <!-- /Bootstrap script cdn -->
-  <!-- My script.js document -->
-  <script src="assets/js/script.js" charset="utf-8" async></script>
-  <!-- /My script.js document -->
+    <!-- Game Win -->
+    <div id="victory-text" class="container-fluid overlay-text">
+        VICTORY!
+        <span class="overlay-text-small">Click to Restart</span>
+    </div>
+    <!-- Game Control Panel -->
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-12 col-md-4 game-control">
+                <h1 class="game-title">
+                    Africards
+                </h1>
+                <div class="user-container">
+                    <h2 class="user-name">
+                        Welcome, <span id="userName">Jesse </span>
+                    </h2>
+                    <!-- Game Country Selector -->
+                    <div class="user-pic">
+                        <img src="assets/images/flags/south-africa.png" alt="User's game profile picture">
+                    </div>
+                    <div class="game-country">
+                        <span id="userCountry"><h4>South Africa</h4></span>
+                    </div>
+                </div>
+                <!-- Game Level Selector -->
+                <div class="level-container">
+                    <div id="easy" class="level">
+                        <p class="level-text">Easy</p>
+                    </div>
+                    <div id="medium" class="level">
+                        <p class="level-text">Med</p>
+                    </div>
+                    <div id="hard" class="level">
+                        <p class="level-text">Hard</p>
+                    </div>
+                </div>
+                <!-- Gameplay Control & Information -->
+                <div class="controls-container">
+                    <div class="controls-icons">
+                        <i class="fas fa-play"></i>
+                        <i class="fas fa-info"></i>
+                    </div>
+                </div>
+                <!-- Light & Dark Mode Switch -->
+                <div class="theme-toggle-container">
+                    <input type="checkbox" class="theme-toggle" id="theme-toggle">
+                    <label class="label" for="theme-toggle">
+                        <i class="fas fa-sun"></i>
+                        <i class="fas fa-moon"></i>
+                        <div class="switch"></div>
+                    </label>
+                </div>
+            </div>
+            <!-- Game Board Container -->
+            <div class="col-xs-12 col-md-8 game-board">
+                <!-- Game Information -->
+                <div class="game-info-container">
+                    <div class="game-info">
+                        Time <span id="secondsLeft">60</span>
+                    </div>
+                    <div class="game-info">
+                        Flips <span id="flips">0</span>
+                    </div>
+                </div>
+                <!-- Game Cards Container -->
+                <div class="game-cards-container">
+                    <div class="card">
+                        <div class="card-back card-face">
+                            <img src="assets/images/world.png" alt="">
+                        </div>
+                        <div class="card-front card-face">
+                            <img src="assets/images/south-africa/one.jpg" alt="">
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-back card-face">
+                            <img src="assets/images/world.png" alt="">
+                        </div>
+                        <div class="card-front card-face">
+                            <img src="assets/images/south-africa/one.jpg" alt="">
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-back card-face">
+                            <img src="assets/images/world.png" alt="">
+                        </div>
+                        <div class="card-front card-face">
+                            <img src="assets/images/south-africa/two.jpg" alt="">
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-back card-face">
+                            <img src="assets/images/world.png" alt="">
+                        </div>
+                        <div class="card-front card-face">
+                            <img src="assets/images/south-africa/two.jpg" alt="">
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-back card-face">
+                            <img src="assets/images/world.png" alt="">
+                        </div>
+                        <div class="card-front card-face">
+                            <img src="assets/images/south-africa/six.jpg" alt="">
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-back card-face">
+                            <img src="assets/images/world.png" alt="">
+                        </div>
+                        <div class="card-front card-face">
+                            <img src="assets/images/south-africa/six.jpg" alt="">
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-back card-face">
+                            <img src="assets/images/world.png" alt="">
+                        </div>
+                        <div class="card-front card-face">
+                            <img src="assets/images/south-africa/three.jpg" alt="">
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-back card-face">
+                            <img src="assets/images/world.png" alt="">
+                        </div>
+                        <div class="card-front card-face">
+                            <img src="assets/images/south-africa/three.jpg" alt="">
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-back card-face">
+                            <img src="assets/images/world.png" alt="">
+                        </div>
+                        <div class="card-front card-face">
+                            <img src="assets/images/south-africa/four.jpg" alt="">
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-back card-face">
+                            <img src="assets/images/world.png" alt="">
+                        </div>
+                        <div class="card-front card-face">
+                            <img src="assets/images/south-africa/four.jpg" alt="">
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-back card-face">
+                            <img src="assets/images/world.png" alt="">
+                        </div>
+                        <div class="card-front card-face">
+                            <img src="assets/images/south-africa/five.jpg" alt="">
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-back card-face">
+                            <img src="assets/images/world.png" alt="">
+                        </div>
+                        <div class="card-front card-face">
+                            <img src="assets/images/south-africa/five.jpg" alt="">
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-back card-face">
+                            <img src="assets/images/world.png" alt="">
+                        </div>
+                        <div class="card-front card-face">
+                            <img src="assets/images/south-africa/seven.jpg" alt="">
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-back card-face">
+                            <img src="assets/images/world.png" alt="">
+                        </div>
+                        <div class="card-front card-face">
+                            <img src="assets/images/south-africa/seven.jpg" alt="">
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-back card-face">
+                            <img src="assets/images/world.png" alt="">
+                        </div>
+                        <div class="card-front card-face">
+                            <img src="assets/images/south-africa/eight.jpg" alt="">
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-back card-face">
+                            <img src="assets/images/world.png" alt="">
+                        </div>
+                        <div class="card-front card-face">
+                            <img src="assets/images/south-africa/eight.jpg" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Bootstrap script cdn -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <!-- My script.js document -->
+    <script src="assets/js/script.js" charset="utf-8" async></script>
 </body>
 </html>
