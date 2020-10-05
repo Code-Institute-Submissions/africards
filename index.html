@@ -7,21 +7,22 @@
   <link href="https://fonts.googleapis.com/css2?family=Barriecito&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0-11/css/all.min.css" />
   <link id="stylesheet" rel="stylesheet" href="assets/css/style.css"><script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
-  <script src="assets/js/script.js" charset="utf-8" async></script>
   <title>Africards</title>
 </head>
 <body>
-  <div class="container-fluid overlay-text">
-    Click to Start
-  </div>
+  <!-- Game Over -->
   <div id="game-over-text" class="container-fluid overlay-text">
     GAME OVER
     <span class="overlay-text-small">Click to Restart</span>
   </div>
+  <!-- /Game Over -->
+  <!-- Game Win -->
   <div id="victory-text" class="container-fluid overlay-text">
     VICTORY!
     <span class="overlay-text-small">Click to Restart</span>
   </div>
+  <!-- /Game Win -->
+  <!-- Game Control Panel -->
   <div class="container-fluid">
     <div class="row">
       <div class="col-xs-12 col-md-4 game-control">
@@ -39,6 +40,7 @@
             <span id="country"><h4>South Africa</h4></span>
           </div>
         </div>
+        <!-- Game Level Selector -->
         <div class="level-container">
           <div id="easy" class="level">
             <p class="level-text">Easy</p>
@@ -50,6 +52,7 @@
             <p class="level-text">Hard</p>
           </div>
         </div>
+        <!-- /Game Level Selector -->
         <div class="controls-container">
           <div class="controls-icons">
             <i class="fas fa-volume-down"></i>
@@ -65,7 +68,10 @@
           </label>
         </div>
       </div>
+      <!-- /Game Control Panel -->
+      <!-- Game Board Container -->
       <div class="col-xs-12 col-md-8 game-board">
+        <!-- Game Information -->
         <div class="game-info-container">
           <div class="game-info">
             Time <span id="time-remaining">60</span>
@@ -74,13 +80,15 @@
             Flips <span id="flips">0</span>
           </div>
         </div>
-        <div class="game-container">
+        <!-- /Game Information -->
+        <!-- Game Cards Container -->
+        <div class="game-cards-container">
           <div class="card">
             <div class="card-back card-face">
               <img src="assets/images/world.png" alt="">
             </div>
             <div class="card-front card-face">
-              <img src="assets/images/south-africa/biltong.jpg" alt="">
+              <img src="assets/images/south-africa/one.jpg" alt="">
             </div>
           </div>
           <div class="card">
@@ -88,7 +96,7 @@
               <img src="assets/images/world.png" alt="">
             </div>
             <div class="card-front card-face">
-              <img src="assets/images/south-africa/biltong.jpg" alt="">
+              <img src="assets/images/south-africa/one.jpg" alt="">
             </div>
           </div>
           <div class="card">
@@ -96,7 +104,7 @@
               <img src="assets/images/world.png" alt="">
             </div>
             <div class="card-front card-face">
-              <img src="assets/images/south-africa/bunnychow.jpg" alt="">
+              <img src="assets/images/south-africa/two.jpg" alt="">
             </div>
           </div>
           <div class="card">
@@ -104,7 +112,7 @@
               <img src="assets/images/world.png" alt="">
             </div>
             <div class="card-front card-face">
-              <img src="assets/images/south-africa/bunnychow.jpg" alt="">
+              <img src="assets/images/south-africa/two.jpg" alt="">
             </div>
           </div>
           <div class="card">
@@ -112,7 +120,7 @@
               <img src="assets/images/world.png" alt="">
             </div>
             <div class="card-front card-face">
-              <img src="assets/images/south-africa/lion.jpg" alt="">
+              <img src="assets/images/south-africa/six.jpg" alt="">
             </div>
           </div>
           <div class="card">
@@ -120,7 +128,7 @@
               <img src="assets/images/world.png" alt="">
             </div>
             <div class="card-front card-face">
-              <img src="assets/images/south-africa/lion.jpg" alt="">
+              <img src="assets/images/south-africa/six.jpg" alt="">
             </div>
           </div>
           <div class="card">
@@ -128,7 +136,7 @@
               <img src="assets/images/world.png" alt="">
             </div>
             <div class="card-front card-face">
-              <img src="assets/images/south-africa/elephant.jpg" alt="">
+              <img src="assets/images/south-africa/three.jpg" alt="">
             </div>
           </div>
           <div class="card">
@@ -136,7 +144,7 @@
               <img src="assets/images/world.png" alt="">
             </div>
             <div class="card-front card-face">
-              <img src="assets/images/south-africa/elephant.jpg" alt="">
+              <img src="assets/images/south-africa/three.jpg" alt="">
             </div>
           </div>
           <div class="card">
@@ -144,7 +152,7 @@
               <img src="assets/images/world.png" alt="">
             </div>
             <div class="card-front card-face">
-              <img src="assets/images/south-africa/gemsbok.jpg" alt="">
+              <img src="assets/images/south-africa/four.jpg" alt="">
             </div>
           </div>
           <div class="card">
@@ -152,7 +160,7 @@
               <img src="assets/images/world.png" alt="">
             </div>
             <div class="card-front card-face">
-              <img src="assets/images/south-africa/gemsbok.jpg" alt="">
+              <img src="assets/images/south-africa/four.jpg" alt="">
             </div>
           </div>
           <div class="card">
@@ -160,7 +168,7 @@
               <img src="assets/images/world.png" alt="">
             </div>
             <div class="card-front card-face">
-              <img src="assets/images/south-africa/giraffe.jpg" alt="">
+              <img src="assets/images/south-africa/five.jpg" alt="">
             </div>
           </div>
           <div class="card">
@@ -168,7 +176,7 @@
               <img src="assets/images/world.png" alt="">
             </div>
             <div class="card-front card-face">
-              <img src="assets/images/south-africa/giraffe.jpg" alt="">
+              <img src="assets/images/south-africa/five.jpg" alt="">
             </div>
           </div>
           <div class="card">
@@ -176,7 +184,7 @@
               <img src="assets/images/world.png" alt="">
             </div>
             <div class="card-front card-face">
-              <img src="assets/images/south-africa/meerkat.jpg" alt="">
+              <img src="assets/images/south-africa/seven.jpg" alt="">
             </div>
           </div>
           <div class="card">
@@ -184,7 +192,7 @@
               <img src="assets/images/world.png" alt="">
             </div>
             <div class="card-front card-face">
-              <img src="assets/images/south-africa/meerkat.jpg" alt="">
+              <img src="assets/images/south-africa/seven.jpg" alt="">
             </div>
           </div>
           <div class="card">
@@ -192,7 +200,7 @@
               <img src="assets/images/world.png" alt="">
             </div>
             <div class="card-front card-face">
-              <img src="assets/images/south-africa/pap.jpg" alt="">
+              <img src="assets/images/south-africa/eight.jpg" alt="">
             </div>
           </div>
           <div class="card">
@@ -200,15 +208,23 @@
               <img src="assets/images/world.png" alt="">
             </div>
             <div class="card-front card-face">
-              <img src="assets/images/south-africa/pap.jpg" alt="">
+              <img src="assets/images/south-africa/eight.jpg" alt="">
             </div>
           </div>
-
         </div>
-
+        <!-- /Game Cards Container -->
       </div>
+      <!-- /Game Board Container -->
     </div>
 
   </div>
+  <!-- Bootstrap script cdn -->
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+  <!-- /Bootstrap script cdn -->
+  <!-- My script.js document -->
+  <script src="assets/js/script.js" charset="utf-8" async></script>
+  <!-- /My script.js document -->
 </body>
 </html>
