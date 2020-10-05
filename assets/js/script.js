@@ -9,6 +9,14 @@ var flipCount = 0;
 
 $(document).ready(function() {
 
+  $(window).on('load',function(){
+        $('#exampleModal').modal('show');
+    });
+
+$('.card').click(function() {
+  $(this).toggleClass("visible");
+})
+
 
 /** Function for the Light-Dark Theme Toggle **/
   $("#theme-toggle").click(function() {
@@ -21,5 +29,5 @@ $(document).ready(function() {
       console.log($("#stylesheet").attr("href"));
     }
   });
-  
+
 })
