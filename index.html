@@ -24,13 +24,43 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-xs-12 col-md-4 game-control">
-                <h1 class="game-title">
+                <h2 class="game-title">
                     Africards
-                </h1>
+                </h2>
+                <!-- User Profile -->
+
+                <div class="modal fade" id="moneyModal" role="dialog">
+                    <div class="modal-dialog">
+
+                        <form method="post" action="change-goal">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title">User Profile</h4>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <p>Please enter your name</p>
+                                    <input class="form-control" name="userName" id="userName">
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                    <button id="save" type="button" class="btn btn-primary" data-dismiss="modal">Save</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
                 <div class="user-container">
-                    <h2 class="user-name">
-                        Welcome, <span id="userName">Jesse </span>
+                    <h2 class="user-profile">
+                        Welcome, <span id="user-name"></span>
+                        <a data-toggle="modal" data-target="#moneyModal">
+                            <i class="fas fa-user-edit"></i>
+                        </a>
                     </h2>
+
                     <!-- Game Country Selector -->
                     <div class="user-pic">
                         <img src="assets/images/flags/south-africa.png" alt="User's game profile picture">
@@ -73,10 +103,10 @@
                 <!-- Game Information -->
                 <div class="game-info-container">
                     <div class="game-info">
-                        Time <span id="secondsLeft">60</span>
+                        Time: <span id="timer"></span>
                     </div>
                     <div class="game-info">
-                        Flips <span id="flips">0</span>
+                        Moves: <span id="moves">0</span>
                     </div>
                 </div>
                 <!-- Game Cards Container -->
