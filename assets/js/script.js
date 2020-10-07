@@ -3,13 +3,17 @@
 const cards = [1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8];
 
 
-var hasFlippedCard = false;
+var timer = 5;
+var secondsLeftDisplay = $("#timer");
+var moves = 0;
 
 let userName = localStorage.getItem("userName");
 let userCountry = localStorage.getItem("userCountry");
 
 
 $(document).ready(function() {
+
+
 
     var game = {
 
@@ -18,6 +22,24 @@ $(document).ready(function() {
 
         init: function() {
             game.assignDeck();
+            // game.reload();
+        },
+
+        reload: function() {
+            countdown = function() {
+                if (timer <= 1) {
+                    clearInterval(timer);
+                    $("#game-over-text").addClass("visible");
+                } else {
+                    timer--;
+                    secondsLeftDisplay.text(timer);
+                    $("#game-over-text").removeClass("visible");
+                };
+            };
+
+
+            secondsLeftDisplay.text(timer);
+            setInterval(countdown, 1000);
         },
 
         assignDeck: function() {
@@ -28,6 +50,14 @@ $(document).ready(function() {
         },
 
         clickHandler: function() {
+            $(".overlay-text-small").click(function() {
+                $("#game-over-text").removeClass("visible");
+                timer = 5;
+                countdown();
+                secondsLeftDisplay.text(timer);
+            });
+
+
             if ($(".card").hasClass("unmatched")) {
                 $('.unmatched').click(function() {
                     $(this).addClass("visible");
