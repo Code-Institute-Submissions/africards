@@ -13,7 +13,9 @@ let userCountry = localStorage.getItem("userCountry");
 
 $(document).ready(function() {
 
-
+    $('#save').on('click', function() {
+      $('#user-name').text( $('#userName').val() );
+    });
 
     var game = {
 
