@@ -13,9 +13,33 @@ let userCountry = localStorage.getItem("userCountry");
 
 $(document).ready(function() {
 
+    /* The following code allows user information from the modal to be displayed on the page for a more personalised experience.
+    The user is also required to select a country to visit which will tailor the game cards to the country.*/
+
     $('#save').on('click', function() {
-      $('#user-name').text( $('#userName').val() );
+      $('#user-name').text("Hi, " + $('#userName').val());
+      $('#userCountry').text("Welcome" + " To " + $('#inputCountry').val() + "!");
+      if ($('#inputCountry').val() === 'South Africa') {
+          $('#user-country-pic').attr('src', 'assets/images/flags/south-africa.png');
+      }
+      if ($('#inputCountry').val() === 'Ethiopia') {
+          $('#user-country-pic').attr('src', 'assets/images/flags/ethiopia.png');
+      }
+      if ($('#inputCountry').val() === 'Ghana') {
+          $('#user-country-pic').attr('src', 'assets/images/flags/ghana.png');
+      }
+      if ($('#inputCountry').val() === 'Kenya') {
+          $('#user-country-pic').attr('src', 'assets/images/flags/kenya.png');
+      }
+      if ($('#inputCountry').val() === 'Morocco') {
+          $('#user-country-pic').attr('src', 'assets/images/flags/morocco.png');
+      }
+      if ($('#inputCountry').val() === 'Nigeria') {
+          $('#user-country-pic').attr('src', 'assets/images/flags/nigeria.png');
+      }
     });
+
+// Game Initialisation
 
     var game = {
 
