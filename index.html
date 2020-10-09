@@ -31,36 +31,40 @@
 
                 <div class="modal fade" id="userProfileModal" role="dialog">
                     <div class="modal-dialog">
-                            <div class="modal-content container-fluid">
-                                <div class="row">
-                                    <div class="col-12">
-                                        <div class="modal-header">
-                                            <h1 class="modal-title">User Profile</h1>
-                                        </div>
-                                            <div class="modal-body">
-                                                <h3>What is your name?</h3>
-                                                <input class="form-control" name="userName" id="userName" required/>
-                                            </div>
-                                            <div class="modal-body">
-                                                <div class="form-group">
-                                                    <label for="inputCountry"><h3>Where would you like to go?</h3></label>
-                                                    <select id="inputCountry" class="form-control" required>
-                                                        <option selected disabled>Choose...</option>
-                                                        <option>Ethiopia</option>
-                                                        <option>Ghana</option>
-                                                        <option>Kenya</option>
-                                                        <option>Morocco</option>
-                                                        <option>Nigeria</option>
-                                                        <option>South Africa</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button id="save" type="button" class="btn save-button" data-dismiss="modal"><h3>Save</h3></button>
-                                            </div>
+                        <div class="modal-content container-fluid">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="modal-header">
+                                        <h1 class="modal-title">User Profile</h1>
                                     </div>
+                                    <form onsubmit="return false;">
+                                    <div class="modal-body">
+                                        <h3>What is your name?</h3>
+                                        <input class="form-control" name="userName" id="userName" required/>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="form-group">
+                                            <label for="inputCountry"><h3>Where would you like to go?</h3></label>
+                                            <select id="inputCountry" class="form-control" required>
+                                                <option selected disabled>Choose...</option>
+                                                <option>Ethiopia</option>
+                                                <option>Ghana</option>
+                                                <option>Kenya</option>
+                                                <option>Morocco</option>
+                                                <option>Nigeria</option>
+                                                <option>South Africa</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button id="save" type="submit" class="btn save-button" data-dismiss="modal">
+                                            <h3>Save</h3>
+                                        </button>
+                                    </div>
+                                </form>
                                 </div>
                             </div>
+                        </div>
                     </div>
                 </div>
 
@@ -74,7 +78,7 @@
 
                     <!-- Game Country Selector -->
                     <div class="user-pic">
-                        <img id="user-country-pic" alt="User's game profile picture">
+                        <img id="user-country-pic" src="assets/images/world.png" alt="User's game profile picture">
                     </div>
                     <div class="game-country">
                         <h4><span id="userCountry"></span></h4>
