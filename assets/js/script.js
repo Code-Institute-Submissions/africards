@@ -7,8 +7,9 @@ var timer = 5;
 var secondsLeftDisplay = $("#timer");
 var moves = 0;
 
-let userName = localStorage.getItem("userName");
-let userCountry = localStorage.getItem("userCountry");
+var userName = localStorage.getItem("userName");
+var userCountry = localStorage.getItem("userCountry");
+var userCountryPic = localStorage.getItem("userCountryPic");
 
 
 $(document).ready(function() {
@@ -16,7 +17,12 @@ $(document).ready(function() {
     /* The following code allows user information from the modal to be displayed on the page for a more personalised experience.
     The user is also required to select a country to visit which will tailor the game cards to the country.*/
 
+    $('#userProfileModal').modal({backdrop: 'static', keyboard: false}) // Taken from https://stackoverflow.com/questions/22207377/disable-click-outside-of-bootstrap-modal-area-to-close-modal
+
+
     $('#save').on('click', function() {
+
+// NEED TO USE SWITCH CASE INSTEAD!
       $('#user-name').text("Hi, " + $('#userName').val());
       $('#userCountry').text("Welcome" + " To " + $('#inputCountry').val() + "!");
       if ($('#inputCountry').val() === 'South Africa') {
@@ -36,7 +42,9 @@ $(document).ready(function() {
       }
       if ($('#inputCountry').val() === 'Nigeria') {
           $('#user-country-pic').attr('src', 'assets/images/flags/nigeria.png');
-      }
+      };
+
+      localStorage.setItem('userCountry', $('#inputCountry').val());
     });
 
 // Game Initialisation
