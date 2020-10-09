@@ -29,47 +29,45 @@
                 </h2>
                 <!-- User Profile -->
 
-                <div class="modal fade" id="moneyModal" role="dialog">
+                <div class="modal fade" id="userProfileModal" role="dialog">
                     <div class="modal-dialog">
-
-                        <form method="post" action="change-goal">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h4 class="modal-title">User Profile</h4>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <p>What is your name?</p>
-                                    <input class="form-control" name="userName" id="userName">
-                                    <div class="form-group pt-3">
-                                        <label for="inputCountry">Where would you like to travel to?</label>
-                                        <select id="inputCountry" class="form-control">
-                                            <option selected disabled>Choose...</option>
-                                            <option>Ethiopia</option>
-                                            <option>Ghana</option>
-                                            <option>Kenya</option>
-                                            <option>Morocco</option>
-                                            <option>Nigeria</option>
-                                            <option>South Africa</option>
-                                        </select>
+                            <div class="modal-content container-fluid">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="modal-header">
+                                            <h1 class="modal-title">User Profile</h1>
+                                        </div>
+                                            <div class="modal-body">
+                                                <h3>What is your name?</h3>
+                                                <input class="form-control" name="userName" id="userName" required/>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="form-group">
+                                                    <label for="inputCountry"><h3>Where would you like to go?</h3></label>
+                                                    <select id="inputCountry" class="form-control" required>
+                                                        <option selected disabled>Choose...</option>
+                                                        <option>Ethiopia</option>
+                                                        <option>Ghana</option>
+                                                        <option>Kenya</option>
+                                                        <option>Morocco</option>
+                                                        <option>Nigeria</option>
+                                                        <option>South Africa</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button id="save" type="button" class="btn save-button" data-dismiss="modal"><h3>Save</h3></button>
+                                            </div>
                                     </div>
                                 </div>
-
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                    <button id="save" type="button" class="btn btn-primary" data-dismiss="modal">Save</button>
-                                </div>
                             </div>
-                        </form>
                     </div>
                 </div>
 
                 <div class="col-sm-8 offset-sm-2 col-md-12 offset-md-0 user-container">
                     <h2 class="user-profile">
                         <span id="user-name"></span>
-                        <a data-toggle="modal" data-target="#moneyModal">
+                        <a data-toggle="modal" data-target="#userProfileModal">
                             <i class="fas fa-user-edit"></i>
                         </a>
                     </h2>
