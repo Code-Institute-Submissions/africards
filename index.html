@@ -41,9 +41,22 @@
                                     </button>
                                 </div>
                                 <div class="modal-body">
-                                    <p>Please enter your name</p>
+                                    <p>What is your name?</p>
                                     <input class="form-control" name="userName" id="userName">
+                                    <div class="form-group pt-3">
+                                        <label for="inputCountry">Where would you like to travel to?</label>
+                                        <select id="inputCountry" class="form-control">
+                                            <option selected disabled>Choose...</option>
+                                            <option>Ethiopia</option>
+                                            <option>Ghana</option>
+                                            <option>Kenya</option>
+                                            <option>Morocco</option>
+                                            <option>Nigeria</option>
+                                            <option>South Africa</option>
+                                        </select>
+                                    </div>
                                 </div>
+
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                                     <button id="save" type="button" class="btn btn-primary" data-dismiss="modal">Save</button>
@@ -55,7 +68,7 @@
 
                 <div class="col-sm-8 offset-sm-2 col-md-12 offset-md-0 user-container">
                     <h2 class="user-profile">
-                        Welcome, <span id="user-name"></span>
+                        <span id="user-name"></span>
                         <a data-toggle="modal" data-target="#moneyModal">
                             <i class="fas fa-user-edit"></i>
                         </a>
@@ -63,10 +76,10 @@
 
                     <!-- Game Country Selector -->
                     <div class="user-pic">
-                        <img src="assets/images/flags/south-africa.png" alt="User's game profile picture">
+                        <img id="user-country-pic" alt="User's game profile picture">
                     </div>
                     <div class="game-country">
-                        <span id="userCountry"><h4>South Africa</h4></span>
+                        <h4><span id="userCountry"></span></h4>
                     </div>
                 </div>
                 <!-- Game Level Selector -->
