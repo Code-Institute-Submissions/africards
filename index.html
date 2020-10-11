@@ -36,6 +36,7 @@
                                 <div class="col-12">
                                     <div class="modal-header">
                                         <h1 class="modal-title">User Profile</h1>
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
                                     </div>
                                     <form onsubmit="return false;">
                                     <div class="modal-body">
@@ -57,7 +58,7 @@
                                         </div>
                                     </div>
                                     <div class="modal-footer">
-                                        <button id="save-button" type="submit" class="btn save-button" data-dismiss="modal">
+                                        <button id="save-button" type="submit" class="btn save-button">
                                             <h3>Save</h3>
                                         </button>
                                     </div>
@@ -120,7 +121,7 @@
                 <!-- Game Information -->
                 <div class="game-info-container">
                     <div class="game-info">
-                        Time: <span id="timer">90</span>
+                        Time: <span id="timer"></span>
                     </div>
                     <div class="game-info">
                         Moves: <span id="moves">0</span>
