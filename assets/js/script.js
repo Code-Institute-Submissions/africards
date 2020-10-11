@@ -2,10 +2,9 @@
 
 const cards = [1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8];
 
-
-var easyTimer = 15;
-var mediumTimer = 10;
-var hardTimer = 5;
+var easyTimer = 10;
+var mediumTimer = 60;
+var hardTimer = 30;
 
 var secondsLeftDisplay = $("#timer");
 var moves = 0;
@@ -68,135 +67,151 @@ $(document).ready(function() {
 
     });
 
-
-
-
-    // Game Initialisation
-
-    var game = {
-
-        firstCard: [],
-        secondCard: [],
-
-        init: function() {
-            game.assignDeck();
-            game.reload(90);
-            game.play(timer);
-        },
-
-        reload: function(timer) {
-            $('#easyLevel').click(function() {
-                secondsLeftDisplay.text(90);
-            });
-            $('#mediumLevel').click(function() {
-                secondsLeftDisplay.text(60);
-            });
-            $('#hardLevel').click(function() {
-                secondsLeftDisplay.text(30);
-            });
-        },
-
-        play: function() {
-            $('#playButton').click(function() {
-                countDown = function(timer) {
-                    let timer = secondsLeftDisplay;
-                    if (timer <= 1) {
-                        clearInterval(timer);
-                        $("#game-over-text").addClass("visible");
-                    } else {
-                        setInterval(function() {
-                            timer--;
-                        }, 1000)
-                        secondsLeftDisplay.text(timer);
-                        $("#game-over-text").removeClass("visible");
-                    };
+    function countDownTimer() {
+        $('#playButton').click(function() {
+            
+            var timer = setInterval(function() {
+                if (easyTimer <= 1) {
+                    clearInterval();
+                    $("#game-over-text").addClass("visible");
+                } else {
+                    easyTimer--;
+                    secondsLeftDisplay.text(easyTimer);
+                    $("#game-over-text").removeClass("visible");
                 };
-            });
+            }, 1000);
+        });
+            secondsLeftDisplay.text(easyTimer);
+        }
 
-        },
+        // Game Initialisation
 
-        // countdown = function() {
-        //     if (timer <= 1) {
-        //         clearInterval(timer);
-        //         $("#game-over-text").addClass("visible");
-        //     } else {
-        //         timer--;
-        //         secondsLeftDisplay.text(timer);
-        //         $("#game-over-text").removeClass("visible");
-        //     };
-        // };
-        //
-        //
-        // secondsLeftDisplay.text(timer);
-        // setInterval(countdown, 1000);
-        // },
+        var game = {
 
-        assignDeck: function() {
-            $('.card').each(function(index) {
-                $(this).attr('data-card-value', cards[index]);
-            });
-            game.clickHandler();
-        },
+            firstCard: [],
+            secondCard: [],
 
-        clickHandler: function() {
-            $(".overlay-text-small").click(function() {
-                $("#game-over-text").removeClass("visible");
-                timer = 5;
-                countdown();
-                secondsLeftDisplay.text(timer);
-            });
+            init: function() {
+                game.assignDeck();
+                // game.play();
+                game.reload();
+            },
 
-
-            if ($(".card").hasClass("unmatched")) {
-                $('.unmatched').click(function() {
-                    $(this).addClass("visible");
-                    console.log($(this).data('cardValue'));
-                    if (game.firstCard.length === 0) {
-                        game.firstCard = [];
-                        game.firstCard.push($(this).data('cardValue'));
-                        $(this).addClass("checkForMatch");
-                    } else if (game.firstCard.length >= 1 && game.secondCard.length === 0){
-                        game.secondCard = [];
-                        game.secondCard.push($(this).data('cardValue'));
-                        $(this).addClass("checkForMatch");
-                        game.checkMatch();
-                    };
-                    console.log(game.firstCard, game.secondCard);
+            // play: function(timer1) {
+            //     $('#playButton').on('click', function() {
+            //         var countDown = function() {
+            //             // if (timer <= 1) {
+            //             //     clearInterval();
+            //             //     $("#game-over-text").addClass("visible");
+            //             // } else {
+            //             //     timer--;
+            //             //     secondsLeftDisplay.text();
+            //             //     $("#game-over-text").removeClass("visible");
+            //             // };
+            //         };
+            //         var timer = setInterval(countDown, 1000);
+            //         secondsLeftDisplay.text();
+            //     });
+            //
+            // },
+            //
+            reload: function() {
+                $('#easyLevel').click(function() {
+                    secondsLeftDisplay.text(easyTimer);
+                    countDownTimer();
                 });
-            };
-        },
-
-        checkMatch: function() {
-            if (game.firstCard[0] === game.secondCard[0]) {
-                $(".visible").addClass("matched").removeClass("unmatched").removeClass("checkForMatch");
-                game.firstCard = [];
-                game.secondCard = [];
-            } else {
-                setTimeout(function() {
-                    $(".unmatched").removeClass("visible").removeClass("checkForMatch");
-                }, 500)
-                game.firstCard = [];
-                game.secondCard = [];
-            };
-        }
-    };
+                $('#mediumLevel').click(function() {
+                    secondsLeftDisplay.text(mediumTimer);
+                });
+                $('#hardLevel').click(function() {
+                    secondsLeftDisplay.text(hardTimer);
+                });
+            },
 
 
 
+            // countdown = function() {
+            //     if (timer <= 1) {
+            //         clearInterval(timer);
+            //         $("#game-over-text").addClass("visible");
+            //     } else {
+            //         timer--;
+            //         secondsLeftDisplay.text(timer);
+            //         $("#game-over-text").removeClass("visible");
+            //     };
+            // };
+            //
+            //
+            // secondsLeftDisplay.text(timer);
+            // setInterval(countdown, 1000);
+            // },
+
+            assignDeck: function() {
+                $('.card').each(function(index) {
+                    $(this).attr('data-card-value', cards[index]);
+                });
+                game.clickHandler();
+            },
+
+            clickHandler: function() {
+                $(".overlay-text-small").click(function() {
+                    $("#game-over-text").removeClass("visible");
+                    timer = 5;
+                    countdown();
+                    secondsLeftDisplay.text(timer);
+                });
 
 
-    /** Function for the Light-Dark Theme Toggle **/
-    $("#theme-toggle").click(function() {
-        var lightDarkSwitch = $("#stylesheet");
-        if (lightDarkSwitch.attr("href") == "assets/css/style.css") {
-            lightDarkSwitch.attr("href", "assets/css/style-dark.css");
-            console.log($("#stylesheet").attr("href"));
-        }  else {
-            lightDarkSwitch.attr("href", "assets/css/style.css");
-            console.log($("#stylesheet").attr("href"));
-        }
-    });
+                if ($(".card").hasClass("unmatched")) {
+                    $('.unmatched').click(function() {
+                        $(this).addClass("visible");
+                        console.log($(this).data('cardValue'));
+                        if (game.firstCard.length === 0) {
+                            game.firstCard = [];
+                            game.firstCard.push($(this).data('cardValue'));
+                            $(this).addClass("checkForMatch");
+                        } else if (game.firstCard.length >= 1 && game.secondCard.length === 0){
+                            game.secondCard = [];
+                            game.secondCard.push($(this).data('cardValue'));
+                            $(this).addClass("checkForMatch");
+                            game.checkMatch();
+                        };
+                        console.log(game.firstCard, game.secondCard);
+                    });
+                };
+            },
 
-    game.init();
+            checkMatch: function() {
+                if (game.firstCard[0] === game.secondCard[0]) {
+                    $(".visible").addClass("matched").removeClass("unmatched").removeClass("checkForMatch");
+                    game.firstCard = [];
+                    game.secondCard = [];
+                } else {
+                    setTimeout(function() {
+                        $(".unmatched").removeClass("visible").removeClass("checkForMatch");
+                    }, 500)
+                    game.firstCard = [];
+                    game.secondCard = [];
+                };
+            }
+        };
 
-})
+
+
+
+
+        /** Function for the Light-Dark Theme Toggle **/
+        $("#theme-toggle").click(function() {
+            var lightDarkSwitch = $("#stylesheet");
+            if (lightDarkSwitch.attr("href") == "assets/css/style.css") {
+                lightDarkSwitch.attr("href", "assets/css/style-dark.css");
+                console.log($("#stylesheet").attr("href"));
+            }  else {
+                lightDarkSwitch.attr("href", "assets/css/style.css");
+                console.log($("#stylesheet").attr("href"));
+            }
+        });
+
+        game.init();
+
+    })
