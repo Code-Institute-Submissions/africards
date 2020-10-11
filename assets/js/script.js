@@ -3,7 +3,10 @@
 const cards = [1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8];
 
 
-var timer = 5;
+var easyTimer = 15;
+var mediumTimer = 10;
+var hardTimer = 5;
+
 var secondsLeftDisplay = $("#timer");
 var moves = 0;
 
@@ -20,34 +23,36 @@ $(document).ready(function() {
     $('#userProfileModal').modal({backdrop: 'static', keyboard: false}) // Taken from https://stackoverflow.com/questions/22207377/disable-click-outside-of-bootstrap-modal-area-to-close-modal
 
 
-    $('#save').on('click', function() {
+    $('#save-button').on('click', function() {
 
-// NEED TO USE SWITCH CASE INSTEAD!
-      $('#user-name').text("Hi, " + $('#userName').val());
-      $('#userCountry').text("Welcome" + " To " + $('#inputCountry').val() + "!");
-      if ($('#inputCountry').val() === 'South Africa') {
-          $('#user-country-pic').attr('src', 'assets/images/flags/south-africa.png');
-      }
-      if ($('#inputCountry').val() === 'Ethiopia') {
-          $('#user-country-pic').attr('src', 'assets/images/flags/ethiopia.png');
-      }
-      if ($('#inputCountry').val() === 'Ghana') {
-          $('#user-country-pic').attr('src', 'assets/images/flags/ghana.png');
-      }
-      if ($('#inputCountry').val() === 'Kenya') {
-          $('#user-country-pic').attr('src', 'assets/images/flags/kenya.png');
-      }
-      if ($('#inputCountry').val() === 'Morocco') {
-          $('#user-country-pic').attr('src', 'assets/images/flags/morocco.png');
-      }
-      if ($('#inputCountry').val() === 'Nigeria') {
-          $('#user-country-pic').attr('src', 'assets/images/flags/nigeria.png');
-      };
+        // Consider using 'Switch Case' instead?
 
-      localStorage.setItem('userCountry', $('#inputCountry').val());
+        $('#user-name').text("Hi, " + $('#userName').val());
+        $('#userCountry').text("Welcome" + " To " + $('#inputCountry').val() + "!");
+
+        let userCountry = $('#inputCountry').val();
+
+        if (userCountry === 'South Africa') {
+            $('#user-country-pic').attr('src', 'assets/images/flags/south-africa.png');
+        } else if (userCountry === 'Ethiopia') {
+            $('#user-country-pic').attr('src', 'assets/images/flags/ethiopia.png');
+        } else if (userCountry === 'Ghana') {
+            $('#user-country-pic').attr('src', 'assets/images/flags/ghana.png');
+        } else if (userCountry === 'Kenya') {
+            $('#user-country-pic').attr('src', 'assets/images/flags/kenya.png');
+        } else if (userCountry === 'Morocco') {
+            $('#user-country-pic').attr('src', 'assets/images/flags/morocco.png');
+        } else if (userCountry === 'Nigeria') {
+            $('#user-country-pic').attr('src', 'assets/images/flags/nigeria.png');
+        };
+
+
     });
 
-// Game Initialisation
+    localStorage.setItem('userCountry', userCountry);
+
+
+    // Game Initialisation
 
     var game = {
 
@@ -56,25 +61,56 @@ $(document).ready(function() {
 
         init: function() {
             game.assignDeck();
-            // game.reload();
+            game.reload(90);
+            game.play();
         },
 
-        reload: function() {
-            countdown = function() {
-                if (timer <= 1) {
-                    clearInterval(timer);
-                    $("#game-over-text").addClass("visible");
-                } else {
-                    timer--;
-                    secondsLeftDisplay.text(timer);
-                    $("#game-over-text").removeClass("visible");
+        reload: function(timer) {
+            $('#easyLevel').click(function() {
+                secondsLeftDisplay.text(90);
+            });
+            $('#mediumLevel').click(function() {
+                secondsLeftDisplay.text(60);
+            });
+            $('#hardLevel').click(function() {
+                secondsLeftDisplay.text(30);
+            });
+        },
+
+        play: function() {
+            $('#playButton').click(function() {
+                countDown = function() {
+                    let timer = secondsLeftDisplay;
+                    if (timer <= 1) {
+                        clearInterval(timer);
+                        $("#game-over-text").addClass("visible");
+                    } else {
+                        timer--;
+                        secondsLeftDisplay.text(timer);
+                        $("#game-over-text").removeClass("visible");
+                    };
                 };
-            };
+                secondsLeftDisplay.text(timer);
+                setInterval(countDown, 1000);
+            });
 
-
-            secondsLeftDisplay.text(timer);
-            setInterval(countdown, 1000);
         },
+
+            // countdown = function() {
+            //     if (timer <= 1) {
+            //         clearInterval(timer);
+            //         $("#game-over-text").addClass("visible");
+            //     } else {
+            //         timer--;
+            //         secondsLeftDisplay.text(timer);
+            //         $("#game-over-text").removeClass("visible");
+            //     };
+            // };
+            //
+            //
+            // secondsLeftDisplay.text(timer);
+            // setInterval(countdown, 1000);
+        // },
 
         assignDeck: function() {
             $('.card').each(function(index) {
