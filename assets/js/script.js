@@ -1,13 +1,15 @@
 // Game Variables
 
-const cards = [1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8];
+var cards = [1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8];
 
-var easyTimer = 10;
+var easyTimer = 90;
 var mediumTimer = 60;
 var hardTimer = 30;
 
 var secondsLeftDisplay = $("#timer");
 var moves = 0;
+
+var timer1;
 
 var userName = localStorage.getItem("userName");
 var userCountry = localStorage.getItem("userCountry");
@@ -67,151 +69,185 @@ $(document).ready(function() {
 
     });
 
-    function countDownTimer() {
-        $('#playButton').click(function() {
-            
-            var timer = setInterval(function() {
-                if (easyTimer <= 1) {
-                    clearInterval();
-                    $("#game-over-text").addClass("visible");
-                } else {
-                    easyTimer--;
-                    secondsLeftDisplay.text(easyTimer);
-                    $("#game-over-text").removeClass("visible");
-                };
-            }, 1000);
+    // Deactivate Level Buttons while game plays
+
+    function deactivateLevelButtons() {
+        if (hardTimer) {
+            setTimeout(function() {
+                $('#easyLevel').addClass("deactivatedMode").removeClass("level button:hover");
+                $('#mediumLevel').addClass("deactivatedMode").removeClass("level button:hover");
+            }, 3000);
+        } else if (mediumTimer) {
+            setTimeout(function() {
+                $('#easyLevel').addClass("deactivatedMode").removeClass("level button:hover");
+                $('#hardLevel').addClass("deactivatedMode").removeClass("level button:hover");
+            }, 6000)
+        } else {
+            setTimeout(function() {
+                $('#easyLevel').addClass("deactivatedMode").removeClass("level button:hover");
+                $('#mediumLevel').addClass("deactivatedMode").removeClass("level button:hover");
+            }, 9000)
+        };
+    }
+
+
+    // function loadTimer() {
+        $('#easyLevel').click(function() {
+            secondsLeftDisplay.text(easyTimer);
         });
+        $('#mediumLevel').click(function() {
+            secondsLeftDisplay.text(mediumTimer);
+        });
+        $('#hardLevel').click(function() {
+            secondsLeftDisplay.text(hardTimer);
+        });
+        countDownTimer1();
+
+    // };
+    // loadTimer();
+
+
+    function countDownTimer1() {
+        if (hardTimer === $('#timer')) {
+            $('#playButton').click(function() {
+            deactivateLevelButtons();
+                var timer1 = setInterval(function() {
+                    if (hardTimer <= 1) {
+                        clearInterval();
+                        $("#game-over-text").addClass("visible");
+                    } else {
+                        hardTimer--;
+                        secondsLeftDisplay.text(hardTimer);
+                        $("#game-over-text").removeClass("visible");
+                    };
+                }, 1000);
+            });
+            secondsLeftDisplay.text(hardTimer);
+        } else if (mediumTimer === $('#timer')){
+            $('#playButton').click(function() {
+            deactivateLevelButtons();
+                var timer1 = setInterval(function() {
+                    if (mediumTimer <= 1) {
+                        clearInterval();
+                        $("#game-over-text").addClass("visible");
+                    } else {
+                        mediumTimer--;
+                        secondsLeftDisplay.text(mediumTimer);
+                        $("#game-over-text").removeClass("visible");
+                    };
+                }, 1000);
+            });
+            secondsLeftDisplay.text(mediumTimer);
+        } else {
+            $('#playButton').click(function() {
+            deactivateLevelButtons();
+                var timer1 = setInterval(function() {
+                    if (easyTimer <= 1) {
+                        clearInterval();
+                        $("#game-over-text").addClass("visible");
+                    } else {
+                        easyTimer--;
+                        secondsLeftDisplay.text(easyTimer);
+                        $("#game-over-text").removeClass("visible");
+                    };
+                }, 1000);
+            });
             secondsLeftDisplay.text(easyTimer);
         }
+    }
 
-        // Game Initialisation
+    // Game Initialisation
 
-        var game = {
+    var game = {
 
-            firstCard: [],
-            secondCard: [],
+        firstCard: [],
+        secondCard: [],
 
-            init: function() {
-                game.assignDeck();
-                // game.play();
-                game.reload();
-            },
+        init: function() {
+            game.assignDeck();
+            // game.shuffleDeck();
+        },
 
-            // play: function(timer1) {
-            //     $('#playButton').on('click', function() {
-            //         var countDown = function() {
-            //             // if (timer <= 1) {
-            //             //     clearInterval();
-            //             //     $("#game-over-text").addClass("visible");
-            //             // } else {
-            //             //     timer--;
-            //             //     secondsLeftDisplay.text();
-            //             //     $("#game-over-text").removeClass("visible");
-            //             // };
-            //         };
-            //         var timer = setInterval(countDown, 1000);
-            //         secondsLeftDisplay.text();
-            //     });
-            //
-            // },
-            //
-            reload: function() {
-                $('#easyLevel').click(function() {
-                    secondsLeftDisplay.text(easyTimer);
-                    countDownTimer();
+        // shuffleDeck: function() { // Shuffles the deck of cards
+        //     var random = 0;
+        //     var temp = 0;
+        //     var i = 1;
+        //     for (i; i < cards.length; i++) {  // Need to check that this shuffle method is ok!!!
+        //         random = Math.round(Math.random() * i);
+        //         temp = cards[i];
+        //         cards[i] = cards[random];
+        //         cards[random] = temp;
+        //     }
+        //     game.assignDeck();
+        //     console.log('Shuffled Deck Array: ' + cards);
+        // },
+
+        assignDeck: function() {
+            $('.card').each(function(index) {
+                $(this).attr('data-card-value', cards[index]);
+            });
+            game.clickHandler();
+        },
+
+        clickHandler: function() {
+            $(".overlay-text-small").click(function() {
+                $("#game-over-text").removeClass("visible");
+                timer = 5;
+                countdown();
+                secondsLeftDisplay.text(timer);
+            });
+
+
+            if ($(".card").hasClass("unmatched")) {
+                $('.unmatched').click(function() {
+                    $(this).addClass("visible");
+                    console.log($(this).data('cardValue'));
+                    if (game.firstCard.length === 0) {
+                        game.firstCard = [];
+                        game.firstCard.push($(this).data('cardValue'));
+                        $(this).addClass("checkForMatch");
+                    } else if (game.firstCard.length >= 1 && game.secondCard.length === 0){
+                        game.secondCard = [];
+                        game.secondCard.push($(this).data('cardValue'));
+                        $(this).addClass("checkForMatch");
+                        game.checkMatch();
+                    };
+                    console.log(game.firstCard, game.secondCard);
                 });
-                $('#mediumLevel').click(function() {
-                    secondsLeftDisplay.text(mediumTimer);
-                });
-                $('#hardLevel').click(function() {
-                    secondsLeftDisplay.text(hardTimer);
-                });
-            },
+            };
+        },
 
-
-
-            // countdown = function() {
-            //     if (timer <= 1) {
-            //         clearInterval(timer);
-            //         $("#game-over-text").addClass("visible");
-            //     } else {
-            //         timer--;
-            //         secondsLeftDisplay.text(timer);
-            //         $("#game-over-text").removeClass("visible");
-            //     };
-            // };
-            //
-            //
-            // secondsLeftDisplay.text(timer);
-            // setInterval(countdown, 1000);
-            // },
-
-            assignDeck: function() {
-                $('.card').each(function(index) {
-                    $(this).attr('data-card-value', cards[index]);
-                });
-                game.clickHandler();
-            },
-
-            clickHandler: function() {
-                $(".overlay-text-small").click(function() {
-                    $("#game-over-text").removeClass("visible");
-                    timer = 5;
-                    countdown();
-                    secondsLeftDisplay.text(timer);
-                });
-
-
-                if ($(".card").hasClass("unmatched")) {
-                    $('.unmatched').click(function() {
-                        $(this).addClass("visible");
-                        console.log($(this).data('cardValue'));
-                        if (game.firstCard.length === 0) {
-                            game.firstCard = [];
-                            game.firstCard.push($(this).data('cardValue'));
-                            $(this).addClass("checkForMatch");
-                        } else if (game.firstCard.length >= 1 && game.secondCard.length === 0){
-                            game.secondCard = [];
-                            game.secondCard.push($(this).data('cardValue'));
-                            $(this).addClass("checkForMatch");
-                            game.checkMatch();
-                        };
-                        console.log(game.firstCard, game.secondCard);
-                    });
-                };
-            },
-
-            checkMatch: function() {
-                if (game.firstCard[0] === game.secondCard[0]) {
-                    $(".visible").addClass("matched").removeClass("unmatched").removeClass("checkForMatch");
-                    game.firstCard = [];
-                    game.secondCard = [];
-                } else {
-                    setTimeout(function() {
-                        $(".unmatched").removeClass("visible").removeClass("checkForMatch");
-                    }, 500)
-                    game.firstCard = [];
-                    game.secondCard = [];
-                };
-            }
-        };
+        checkMatch: function() {
+            if (game.firstCard[0] === game.secondCard[0]) {
+                $(".visible").addClass("matched").removeClass("unmatched").removeClass("checkForMatch");
+                game.firstCard = [];
+                game.secondCard = [];
+            } else {
+                setTimeout(function() {
+                    $(".unmatched").removeClass("visible").removeClass("checkForMatch");
+                }, 500)
+                game.firstCard = [];
+                game.secondCard = [];
+            };
+        }
+    };
 
 
 
 
 
-        /** Function for the Light-Dark Theme Toggle **/
-        $("#theme-toggle").click(function() {
-            var lightDarkSwitch = $("#stylesheet");
-            if (lightDarkSwitch.attr("href") == "assets/css/style.css") {
-                lightDarkSwitch.attr("href", "assets/css/style-dark.css");
-                console.log($("#stylesheet").attr("href"));
-            }  else {
-                lightDarkSwitch.attr("href", "assets/css/style.css");
-                console.log($("#stylesheet").attr("href"));
-            }
-        });
+    /** Function for the Light-Dark Theme Toggle **/
+    $("#theme-toggle").click(function() {
+        var lightDarkSwitch = $("#stylesheet");
+        if (lightDarkSwitch.attr("href") == "assets/css/style.css") {
+            lightDarkSwitch.attr("href", "assets/css/style-dark.css");
+            console.log($("#stylesheet").attr("href"));
+        }  else {
+            lightDarkSwitch.attr("href", "assets/css/style.css");
+            console.log($("#stylesheet").attr("href"));
+        }
+    });
 
-        game.init();
+    game.init();
 
-    })
+})
