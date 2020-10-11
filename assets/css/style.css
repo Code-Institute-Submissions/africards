@@ -251,6 +251,12 @@ body {
     line-height: 25px;
 }
 
+.controls-container i:hover {
+    color: #fff;
+    font-weight: 700;
+    background-color: #6e4949;
+}
+
 .controls-icons {
     display: inline-block;
 }
@@ -315,8 +321,8 @@ body {
 }
 
 .card-back img {
-    height: 80%;
-    width: auto;
+    max-height: 40%;
+    max-width: 80%;
     transform: scale(1);
 }
 
