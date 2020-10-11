@@ -150,21 +150,34 @@ body {
 }
 
 .level {
-    box-sizing: border-box;
     display: inline-block;
+}
+
+.level button {
+    box-sizing: border-box;
     margin: 15px 10px 10px;
     width: 70px;
     height: 40px;
-    border: 2px solid;
+    border: 2px solid #2f1818;
     border-radius: 40%;
     padding: 5px 0px;
     background-color: #e6b145;
 }
 
 .level-text {
+    color: #2f1818;
     font-weight: bold;
     letter-spacing: 2px;
+    background: none;
+    border: none;
 }
+
+.level button:hover {
+    color: #fff;
+    font-weight: 700;
+    background-color: #6e4949;
+}
+
 
 /* ----------------------------------------------------------------- Light/Dark Mode Toggle */
 
@@ -213,6 +226,40 @@ body {
 .theme-toggle:checked + .label .switch {
     transform: translateX(24px);
 }
+
+/* ----------------------------------------------------------------- Game Control Icons Container */
+
+.controls-container {
+    background-color: #e2eea9;
+    border-radius: 10px;
+    margin-top: 15px;
+    text-align: center;
+    box-sizing: border-box;
+    padding: 10px 0px;
+}
+
+.controls-container i {
+    color: #2f1818;
+    margin: 0px 20px;
+    border: 2px solid #2f1818;
+    border-radius: 50%;
+    box-sizing: border-box;
+    width: 50px;
+    height: 50px;
+    padding: 12px 0px;
+    background-color: #e6b145;
+    line-height: 25px;
+}
+
+.controls-icons {
+    display: inline-block;
+}
+
+.controls-icons button {
+    background: none;
+    border: none;
+}
+
 
 /* ----------------------------------------------------------------- Game Board Container */
 
@@ -310,28 +357,6 @@ body {
     border-width: 1px;
     border-style: solid;
     transition: transform 500ms ease-in-out;
-}
-
-.controls-container {
-    background-color: #e2eea9;
-    border-radius: 10px;
-    margin-top: 15px;
-    text-align: center;
-    box-sizing: border-box;
-    padding: 10px 0px;
-}
-
-.controls-container i {
-    color: #2f1818;
-    margin: 0px 20px;
-    border: 2px solid #2f1818;
-    border-radius: 50%;
-    box-sizing: border-box;
-    width: 50px;
-    height: 50px;
-    padding: 12px 0px;
-    background-color: #e6b145;
-    line-height: 25px;
 }
 
 
