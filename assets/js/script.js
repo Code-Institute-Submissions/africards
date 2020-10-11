@@ -20,7 +20,20 @@ $(document).ready(function() {
     /* The following code allows user information from the modal to be displayed on the page for a more personalised experience.
     The user is also required to select a country to visit which will tailor the game cards to the country.*/
 
-    $('#userProfileModal').modal({backdrop: 'static', keyboard: false}) // Taken from https://stackoverflow.com/questions/22207377/disable-click-outside-of-bootstrap-modal-area-to-close-modal
+    function checkUserData() {
+        if ((userCountry === null) || (userName === "")) {
+            // Taken from https://stackoverflow.com/questions/22207377/disable-click-outside-of-bootstrap-modal-area-to-close-modal
+            setTimeout(function() {
+                $("#userProfileModal").modal({
+                    backdrop: 'static',
+                    keyboard: false
+                });
+            }, 500);
+        } else {
+            userCountry = localStorage.setItem("userCountry");
+            userName = localStorage.setItem("userName");
+        }
+    }
 
 
     $('#save-button').on('click', function() {
@@ -33,23 +46,29 @@ $(document).ready(function() {
         let userCountry = $('#inputCountry').val();
 
         if (userCountry === 'South Africa') {
-            $('#user-country-pic').attr('src', 'assets/images/flags/south-africa.png');
+            // $('#user-country-pic').attr('src', 'assets/images/flags/south-africa.png');
+            $('.card-back-image').attr('src', 'assets/images/flags/south-africa.png');
         } else if (userCountry === 'Ethiopia') {
-            $('#user-country-pic').attr('src', 'assets/images/flags/ethiopia.png');
+            // $('#user-country-pic').attr('src', 'assets/images/flags/ethiopia.png');
+            $('.card-back-image').attr('src', 'assets/images/flags/ethiopia.png');
         } else if (userCountry === 'Ghana') {
-            $('#user-country-pic').attr('src', 'assets/images/flags/ghana.png');
+            // $('#user-country-pic').attr('src', 'assets/images/flags/ghana.png');
+            $('.card-back-image').attr('src', 'assets/images/flags/ghana.png');
         } else if (userCountry === 'Kenya') {
-            $('#user-country-pic').attr('src', 'assets/images/flags/kenya.png');
+            // $('#user-country-pic').attr('src', 'assets/images/flags/kenya.png');
+            $('.card-back-image').attr('src', 'assets/images/flags/kenya.png');
         } else if (userCountry === 'Morocco') {
-            $('#user-country-pic').attr('src', 'assets/images/flags/morocco.png');
+            // $('#user-country-pic').attr('src', 'assets/images/flags/morocco.png');
+            $('.card-back-image').attr('src', 'assets/images/flags/morocco.png');
         } else if (userCountry === 'Nigeria') {
-            $('#user-country-pic').attr('src', 'assets/images/flags/nigeria.png');
+            // $('#user-country-pic').attr('src', 'assets/images/flags/nigeria.png');
+            $('.card-back-image').attr('src', 'assets/images/flags/nigeria.png');
         };
 
 
     });
 
-    localStorage.setItem('userCountry', userCountry);
+
 
 
     // Game Initialisation
@@ -62,7 +81,7 @@ $(document).ready(function() {
         init: function() {
             game.assignDeck();
             game.reload(90);
-            game.play();
+            game.play(timer);
         },
 
         reload: function(timer) {
@@ -79,37 +98,37 @@ $(document).ready(function() {
 
         play: function() {
             $('#playButton').click(function() {
-                countDown = function() {
+                countDown = function(timer) {
                     let timer = secondsLeftDisplay;
                     if (timer <= 1) {
                         clearInterval(timer);
                         $("#game-over-text").addClass("visible");
                     } else {
-                        timer--;
+                        setInterval(function() {
+                            timer--;
+                        }, 1000)
                         secondsLeftDisplay.text(timer);
                         $("#game-over-text").removeClass("visible");
                     };
                 };
-                secondsLeftDisplay.text(timer);
-                setInterval(countDown, 1000);
             });
 
         },
 
-            // countdown = function() {
-            //     if (timer <= 1) {
-            //         clearInterval(timer);
-            //         $("#game-over-text").addClass("visible");
-            //     } else {
-            //         timer--;
-            //         secondsLeftDisplay.text(timer);
-            //         $("#game-over-text").removeClass("visible");
-            //     };
-            // };
-            //
-            //
-            // secondsLeftDisplay.text(timer);
-            // setInterval(countdown, 1000);
+        // countdown = function() {
+        //     if (timer <= 1) {
+        //         clearInterval(timer);
+        //         $("#game-over-text").addClass("visible");
+        //     } else {
+        //         timer--;
+        //         secondsLeftDisplay.text(timer);
+        //         $("#game-over-text").removeClass("visible");
+        //     };
+        // };
+        //
+        //
+        // secondsLeftDisplay.text(timer);
+        // setInterval(countdown, 1000);
         // },
 
         assignDeck: function() {
