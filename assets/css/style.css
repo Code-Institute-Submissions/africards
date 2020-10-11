@@ -108,8 +108,12 @@ body {
 
 .modal-header {
     background-color: #e6b145;
-    display: block;
+    display: flex;
     text-align: center;
+}
+
+.modal-header button {
+    font-size: 2em;
 }
 
 .modal-body {
@@ -321,8 +325,8 @@ body {
 }
 
 .card-back img {
-    max-height: 40%;
-    max-width: 80%;
+    max-height: 80%;
+    max-width: 100%;
     transform: scale(1);
 }
 
@@ -426,4 +430,11 @@ body {
     .game-title {
         font-size: 4em;
     }
+}
+
+/* ----------------------------------------------------------------- Game Board Container */
+
+.deactivatedMode {
+    opacity: 0.4;
+    cursor: wait;
 }
