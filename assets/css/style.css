@@ -93,6 +93,10 @@ body {
     font-family: 'Barriecito', cursive;
 }
 
+.user-profile-icon {
+    cursor: pointer;
+}
+
 .game-country {
     box-sizing: border-box;
     max-height: 20%;
@@ -430,7 +434,7 @@ transition: transform 500ms ease-in-out;
     .game-title {
         font-size: 3.5em;
     }
-    
+
     .card {
         width: 105px;
         height: 115px;

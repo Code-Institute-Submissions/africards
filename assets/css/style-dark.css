@@ -93,6 +93,10 @@ body {
     font-family: 'Barriecito', cursive;
 }
 
+.user-profile-icon {
+    cursor: pointer;
+}
+
 .game-country {
     box-sizing: border-box;
     max-height: 20%;
