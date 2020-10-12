@@ -363,8 +363,9 @@ https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_buttons_animate3 *
     transition: transform 500ms ease-in-out;
 }
 
+/* ----------------------------------------------------------------- Media Queries */
 
-@media (max-width: 767px) {
+@media (max-width: 414px) {
 
     .game-title {
         font-size: 2.5em;
@@ -398,7 +399,15 @@ https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_buttons_animate3 *
     }
 }
 
-@media (min-width: 768px) and (max-width: 868px) {
+@media (min-width: 414px) and (max-width: 533px) {
+    .card {
+        width: 95px;
+        height: 100px;
+    }
+}
+
+
+@media (min-width: 534px) and (max-width: 868px) {
     .game-title {
         font-size: 3em;
     }
@@ -424,4 +433,11 @@ https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_buttons_animate3 *
     .game-title {
         font-size: 4em;
     }
+}
+
+/* ----------------------------------------------------------------- Deactivate Mode Settings */
+
+.deactivatedMode {
+    opacity: 0.4;
+    cursor: wait;
 }
