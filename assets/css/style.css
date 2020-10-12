@@ -152,36 +152,33 @@ body {
     border-radius: 10px;
     text-align: center;
 }
-
-.level {
-    display: inline-block;
+/* Button animation effect from:
+https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_buttons_animate3 */
+.level-container button {
+  padding: 5px 25px;
+  margin: 20px 10px 25px;
+  height: 80%;
+  font-size: 24px;
+  text-align: center;
+  cursor: pointer;
+  outline: none;
+  color: #fff;
+  background-color: #8d5d5d;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 9px #999;
 }
 
-.level button {
-    box-sizing: border-box;
-    margin: 15px 10px 10px;
-    width: 70px;
-    height: 40px;
-    border: 2px solid #2f1818;
-    border-radius: 40%;
-    padding: 5px 0px;
-    background-color: #e6b145;
-}
-
-.level-text {
-    color: #2f1818;
-    font-weight: bold;
-    letter-spacing: 2px;
-    background: none;
-    border: none;
-}
-
-.level button:hover {
-    color: #fff;
-    font-weight: 700;
+.level-container button:hover {
     background-color: #6e4949;
 }
 
+.level-container button:active {
+  background-color: #6e4949;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+  border: none;
+}
 
 /* ----------------------------------------------------------------- Light/Dark Mode Toggle */
 
