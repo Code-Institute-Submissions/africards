@@ -237,6 +237,10 @@ $(document).ready(function() {
         $('.card').each(function(index) {
             $(this).attr('data-card-value', cards[index]);
         });
+        $('.card-front-image').each(function(index) {
+            $(this).attr('src', 'assets/images/' + userCountry + '/' + cards[index].img);
+            console.log(this);
+        });
         clickHandler();
     }
 
