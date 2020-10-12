@@ -155,18 +155,18 @@ body {
 /* Button animation effect from:
 https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_buttons_animate3 */
 .level-container button {
-  padding: 5px 25px;
-  margin: 20px 10px 25px;
-  height: 80%;
-  font-size: 24px;
-  text-align: center;
-  cursor: pointer;
-  outline: none;
-  color: #fff;
-  background-color: #8d5d5d;
-  border: none;
-  border-radius: 15px;
-  box-shadow: 0 9px #999;
+    padding: 5px 25px;
+    margin: 20px 10px 25px;
+    height: 80%;
+    font-size: 24px;
+    text-align: center;
+    cursor: pointer;
+    outline: none;
+    color: #fff;
+    background-color: #8d5d5d;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 9px #999;
 }
 
 .level-container button:hover {
@@ -174,10 +174,10 @@ https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_buttons_animate3 *
 }
 
 .level-container button:active {
-  background-color: #6e4949;
-  box-shadow: 0 5px #666;
-  transform: translateY(4px);
-  border: none;
+    background-color: #6e4949;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+    border: none;
 }
 
 /* ----------------------------------------------------------------- Light/Dark Mode Toggle */
@@ -347,8 +347,8 @@ https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_buttons_animate3 *
 }
 
 /* .card:hover .card-back img {
-    transform: scale(1.2);
-    transition: transform 500ms ease-in-out;
+transform: scale(1.2);
+transition: transform 500ms ease-in-out;
 } */
 
 .card-face {
@@ -419,16 +419,26 @@ https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_buttons_animate3 *
         width: 105px;
         height: 115px;
     }
+
+    .level-container button {
+        padding: 5px 15px;
+        margin: 8px 10px 15px;
+    }
 }
 
 @media (min-width: 869px) and (max-width: 1000px) {
     .game-title {
         font-size: 3.5em;
     }
-
+    
     .card {
         width: 105px;
         height: 115px;
+    }
+
+    .level-container button {
+        padding: 5px 15px;
+        margin: 8px 5px 15px;
     }
 }
 
