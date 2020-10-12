@@ -10,9 +10,10 @@ var mediumTimer = 60;
 var hardTimer = 30;
 
 var secondsLeftDisplay = $("#seconds");
-var moves = 0;
+var movesCount = 0;
 
 var userCountry = localStorage.getItem("userCountry");
+console.log(userCountry);
 var userName = localStorage.getItem("userName");
 
 
@@ -22,10 +23,8 @@ $(document).ready(function() {
     The user is also required to select a country to visit which will tailor the game cards to the country.*/
 
     function checkUserData() {
-        if ((userCountry.val() === null) || (userCountry.val() === "") || (userName.val() === "")) {
+        if ((userCountry === null) || (userCountry === "") || (userName === "")) {
             // Taken from https://stackoverflow.com/questions/22207377/disable-click-outside-of-bootstrap-modal-area-to-close-modal
-            userCountry = localStorage.getItem("userCountry");
-            userName = localStorage.getItem("userName");
             $("#userProfileModal").modal({
                 backdrop: 'static',
                 keyboard: false
@@ -88,10 +87,10 @@ $(document).ready(function() {
                 if (hardTimer <= 1) {
                     clearInterval();
                     $("#game-over-text").addClass("visible");
+                    resetGame();
                 } else {
                     hardTimer--;
                     secondsLeftDisplay.text(hardTimer);
-                    $("#game-over-text").removeClass("visible");
                 };
             }, 1000);
         });
@@ -106,10 +105,10 @@ $(document).ready(function() {
                 if (mediumTimer <= 1) {
                     clearInterval();
                     $("#game-over-text").addClass("visible");
+                    resetGame();
                 } else {
                     mediumTimer--;
                     secondsLeftDisplay.text(mediumTimer);
-                    $("#game-over-text").removeClass("visible");
                 };
             }, 1000);
         });
@@ -124,10 +123,10 @@ $(document).ready(function() {
                 if (easyTimer <= 1) {
                     clearInterval();
                     $("#game-over-text").addClass("visible");
+                    resetGame();
                 } else {
                     easyTimer--;
                     secondsLeftDisplay.text(easyTimer);
-                    $("#game-over-text").removeClass("visible");
                 };
             }, 1000);
         });
@@ -188,6 +187,8 @@ function clickHandler() {
                 // secondCard = [];
                 secondCard.push($(this).data('cardValue'));
                 $(this).addClass("checkForMatch");
+                movesCount++;
+                $('#moves').text(movesCount)
                 checkMatch();
             };
             console.log(firstCard, secondCard);
@@ -207,89 +208,28 @@ function checkMatch() {
             secondCard = [];
         }, 500)
     };
+    checkWin();
 }
-//     checkMatch: function() {
-//     }
 
+function checkWin() {
+    if ($('.unmatched').length === 0) {
+        setTimeout(function() {
+            $("#victory-text").addClass("visible");
+        }, 500);
+    }
+    resetGame();
+}
 
-// Game Initialisation
+function resetGame() {
+    $(".overlay-text-small").click(function() {
+        $('.card').removeClass('visible').removeClass('matched');
+        secondsLeftDisplay;
+        movesCount = 0;
+        $('#moves').text(movesCount)
+        $('.overlay-text').removeClass('visible');
+    });
 
-// var game = {
-//
-//     firstCard: [],
-//     secondCard: [],
-//
-//     init: function() {
-//         game.assignDeck();
-//         // game.shuffleDeck();
-//     },
-//
-//     // shuffleDeck: function() { // Shuffles the deck of cards
-//     //     var random = 0;
-//     //     var temp = 0;
-//     //     var i = 1;
-//     //     for (i; i < cards.length; i++) {  // Need to check that this shuffle method is ok!!!
-//     //         random = Math.round(Math.random() * i);
-//     //         temp = cards[i];
-//     //         cards[i] = cards[random];
-//     //         cards[random] = temp;
-//     //     }
-//     //     game.assignDeck();
-//     //     console.log('Shuffled Deck Array: ' + cards);
-//     // },
-//
-//     assignDeck: function() {
-//         $('.card').each(function(index) {
-//             $(this).attr('data-card-value', cards[index]);
-//         });
-//         game.clickHandler();
-//     },
-//
-//     clickHandler: function() {
-//         $(".overlay-text-small").click(function() {
-//             $("#game-over-text").removeClass("visible");
-//             timer = 5;
-//             countdown();
-//             secondsLeftDisplay.text(timer);
-//         });
-//
-//
-//         if ($(".card").hasClass("unmatched")) {
-//             $('.unmatched').click(function() {
-//                 $(this).addClass("visible");
-//                 console.log($(this).data('cardValue'));
-//                 if (game.firstCard.length === 0) {
-//                     game.firstCard = [];
-//                     game.firstCard.push($(this).data('cardValue'));
-//                     $(this).addClass("checkForMatch");
-//                 } else if (game.firstCard.length >= 1 && game.secondCard.length === 0){
-//                     game.secondCard = [];
-//                     game.secondCard.push($(this).data('cardValue'));
-//                     $(this).addClass("checkForMatch");
-//                     game.checkMatch();
-//                 };
-//                 console.log(game.firstCard, game.secondCard);
-//             });
-//         };
-//     },
-//
-//     checkMatch: function() {
-//         if (game.firstCard[0] === game.secondCard[0]) {
-//             $(".visible").addClass("matched").removeClass("unmatched").removeClass("checkForMatch");
-//             game.firstCard = [];
-//             game.secondCard = [];
-//         } else {
-//             setTimeout(function() {
-//                 $(".unmatched").removeClass("visible").removeClass("checkForMatch");
-//             }, 500)
-//             game.firstCard = [];
-//             game.secondCard = [];
-//         };
-//     }
-// };
-
-
-
+}
 
 
 /** Function for the Light-Dark Theme Toggle **/
@@ -303,7 +243,5 @@ $("#theme-toggle").click(function() {
         console.log($("#stylesheet").attr("href"));
     }
 });
-
-// game.init();
 
 })
