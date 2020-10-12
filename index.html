@@ -45,7 +45,7 @@
                                     </div>
                                     <div class="modal-body">
                                         <div class="form-group">
-                                            <label for="inputCountry"><h3>Where would you like to go?</h3></label>
+                                            <label for="inputCountry"><h3>Where to?</h3></label>
                                             <select id="inputCountry" class="form-control" required>
                                                 <option selected disabled>Choose...</option>
                                                 <option>Ethiopia</option>
@@ -71,18 +71,18 @@
 
                 <div class="col-sm-8 offset-sm-2 col-md-12 offset-md-0 user-container">
                     <h2 class="user-profile">
-                        <span id="user-name"></span>
+                        Hello, <span id="user-name"></span>
                         <a data-toggle="modal" data-target="#userProfileModal">
                             <i class="fas fa-user-edit"></i>
                         </a>
                     </h2>
 
                     <!-- Game Country Selector -->
-                    <!-- <div class="user-pic">
+                    <div class="user-pic">
                         <img id="user-country-pic" src="assets/images/world.png" alt="User's game profile picture">
-                    </div> -->
+                    </div>
                     <div class="game-country">
-                        <h4><span id="userCountry"></span></h4>
+                        <h4><span id="user-country"></span></h4>
                     </div>
                 </div>
                 <!-- Game Level Selector -->
@@ -94,10 +94,10 @@
                 <!-- Gameplay Control & Information -->
                 <div class="col-sm-8 offset-sm-2 col-md-12 offset-md-0 controls-container">
                     <div class="controls-icons">
-                        <button id="playButton"><i class="fas fa-play"></i></button>
+                        <button id="play-button"><i class="fas fa-play"></i></button>
                     </div>
                     <div class="controls-icons">
-                        <button id="infoButton"><i class="fas fa-info"></i></button>
+                        <button id="info-button"><i class="fas fa-info"></i></button>
                     </div>
                 </div>
                 <!-- Light & Dark Mode Switch -->
@@ -115,7 +115,7 @@
                 <!-- Game Information -->
                 <div class="game-info-container">
                     <div class="game-info">
-                        Time: <span id="timer"></span>
+                        Time: <span id="seconds"></span>
                     </div>
                     <div class="game-info">
                         Moves: <span id="moves">0</span>
