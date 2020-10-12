@@ -159,7 +159,7 @@ https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_buttons_animate3 *
     text-align: center;
     cursor: pointer;
     outline: none;
-    color: #fff;
+    color: #2f1818;
     background-color: #db9c1d;
     border: none;
     border-radius: 15px;
@@ -267,7 +267,7 @@ https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_buttons_animate3 *
 /* ----------------------------------------------------------------- Game Board Container */
 
 .game-board {
-    background-image: url("../images/africa-dark.png");
+    background-image: url("../images/africa-light.png");
     background-size: cover;
     background-attachment: fixed;
     width: 100%;
