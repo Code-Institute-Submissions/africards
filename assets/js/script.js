@@ -1,6 +1,71 @@
 // Game Variables
 
-var cards = [1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8];
+var cards = [
+    {
+        img: "one.jpg",
+        no: 1
+    },
+    {
+        img: "one.jpg",
+        no: 1
+    },
+    {
+        img: "two.jpg",
+        no: 2
+    },
+    {
+        img: "two.jpg",
+        no: 2
+    },
+    {
+        img: "three.jpg",
+        no: 3
+    },
+    {
+        img: "three.jpg",
+        no: 3
+    },
+    {
+        img: "four.jpg",
+        no: 4
+    },
+    {
+        img: "four.jpg",
+        no: 4
+    },
+    {
+        img: "five.jpg",
+        no: 5
+    },
+    {
+        img: "five.jpg",
+        no: 5
+    },
+    {
+        img: "six.jpg",
+        no: 6
+    },
+    {
+        img: "six.jpg",
+        no: 6
+    },
+    {
+        img: "seven.jpg",
+        no: 7
+    },
+    {
+        img: "seven.jpg",
+        no: 7
+    },
+    {
+        img: "eight.jpg",
+        no: 8
+    },
+    {
+        img: "eight.jpg",
+        no: 8
+    }
+];
 
 var firstCard = [];
 var secondCard = [];
