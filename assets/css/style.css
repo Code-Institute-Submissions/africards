@@ -346,10 +346,10 @@ https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_buttons_animate3 *
     transform: rotateY(0);
 }
 
-.card:hover .card-back img {
+/* .card:hover .card-back img {
     transform: scale(1.2);
     transition: transform 500ms ease-in-out;
-}
+} */
 
 .card-face {
     position: absolute;
