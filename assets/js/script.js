@@ -13,7 +13,6 @@ var secondsLeftDisplay = $("#seconds");
 var movesCount = 0;
 
 var userCountry = localStorage.getItem("userCountry");
-console.log(userCountry);
 var userName = localStorage.getItem("userName");
 
 
@@ -21,6 +20,30 @@ $(document).ready(function() {
 
     /* The following code allows user information from the modal to be displayed on the page for a more personalised experience.
     The user is also required to select a country to visit which will tailor the game cards to the country.*/
+
+    /* Shuffle method */
+    function shuffleDeck() { // Shuffles the right deck of cards
+        var random = 0;
+        var temp = 0;
+        var i = 0;
+        console.log('Unshuffled Deck Array: ' + cards);
+        for (i; i < cards.length; i++) {  // Need to check that this shuffle method is ok!!!
+            random = Math.round(Math.random() * i);
+            temp = cards[i];
+            cards[i] = cards[random];
+            cards[random] = temp;
+        }
+        // assignDeck();
+        console.log('Shuffled Deck Array: ' + cards);
+    };
+    shuffleDeck();
+
+
+
+
+
+
+
 
     function checkUserData() {
         if ((userCountry === null) || (userCountry === "") || (userName === "")) {
@@ -34,33 +57,43 @@ $(document).ready(function() {
             userCountry = localStorage.getItem("userCountry");
 
         }
-        userCountry = localStorage.setItem("userCountry", userCountry.val());
-        userName = localStorage.setItem("userName", userName.val());
+        console.log(userCountry, userName);
+        setupUser(userCountry, userName);
     }
-    // Deactivate Level Buttons while game plays
-
-    // function deactivateLevelButtons() {
-    //     if (hardTimer) {
-    //         setTimeout(function() {
-    //             $('#easyLevel').addClass("deactivatedMode").removeClass("level button:hover");
-    //             $('#mediumLevel').addClass("deactivatedMode").removeClass("level button:hover");
-    //         }, 3000);
-    //     } else if (mediumTimer) {
-    //         setTimeout(function() {
-    //             $('#easyLevel').addClass("deactivatedMode").removeClass("level button:hover");
-    //             $('#hardLevel').addClass("deactivatedMode").removeClass("level button:hover");
-    //         }, 6000)
-    //     } else {
-    //         setTimeout(function() {
-    //             $('#easyLevel').addClass("deactivatedMode").removeClass("level button:hover");
-    //             $('#mediumLevel').addClass("deactivatedMode").removeClass("level button:hover");
-    //         }, 9000)
-    //     };
-    // }
+    checkUserData();
 
 
+    function setupUser(userCountry, userName) {
+        $('#user-name').text(userName);
+        $('#user-country').text("Welcome" + " To " + userCountry + "!");
 
-    loadTimer();
+        if (userCountry === 'South Africa') {
+            $('#user-country-pic').attr('src', 'assets/images/flags/south-africa.png');
+            $('.card-back-image').attr('src', 'assets/images/flags/south-africa.png');
+        } else if (userCountry === 'Ethiopia') {
+            $('#user-country-pic').attr('src', 'assets/images/flags/ethiopia.png');
+            $('.card-back-image').attr('src', 'assets/images/flags/ethiopia.png');
+        } else if (userCountry === 'Ghana') {
+            $('#user-country-pic').attr('src', 'assets/images/flags/ghana.png');
+            $('.card-back-image').attr('src', 'assets/images/flags/ghana.png');
+        } else if (userCountry === 'Kenya') {
+            $('#user-country-pic').attr('src', 'assets/images/flags/kenya.png');
+            $('.card-back-image').attr('src', 'assets/images/flags/kenya.png');
+            $('.card-front-image').attr('src',function(index,attr){
+                return attr.replace('south-africa','kenya');
+            });
+        } else if (userCountry === 'Morocco') {
+            $('#user-country-pic').attr('src', 'assets/images/flags/morocco.png');
+            $('.card-back-image').attr('src', 'assets/images/flags/morocco.png');
+        } else if (userCountry === 'Nigeria') {
+            $('#user-country-pic').attr('src', 'assets/images/flags/nigeria.png');
+            $('.card-back-image').attr('src', 'assets/images/flags/nigeria.png');
+            $('.card-front-image').attr('src',function(index,attr){
+                return attr.replace('south-africa','nigeria');
+            });
+        };
+    }
+
 
     function loadTimer() {
         $('#easy-level').click(function() {
@@ -77,12 +110,12 @@ $(document).ready(function() {
         });
         assignDeck();
     };
-
+    loadTimer();
 
     function hardCountDownTimer() {
         // if (hardTimer === secondsLeftDisplay.text(hardTimer)) {
         $('#play-button').click(function() {
-            // deactivateLevelButtons();
+            deactivatedMode()
             var timer = setInterval(function() {
                 if (hardTimer <= 1) {
                     clearInterval();
@@ -100,7 +133,7 @@ $(document).ready(function() {
 
         // else if (mediumTimer === secondsLeftDisplay.text(mediumTimer)){
         $('#play-button').click(function() {
-            // deactivateLevelButtons();
+            deactivatedMode()
             var timer = setInterval(function() {
                 if (mediumTimer <= 1) {
                     clearInterval();
@@ -118,7 +151,7 @@ $(document).ready(function() {
     function easyCountDownTimer() {
         // else {
         $('#play-button').click(function() {
-            // deactivateLevelButtons();
+            deactivatedMode()
             var timer = setInterval(function() {
                 if (easyTimer <= 1) {
                     clearInterval();
@@ -134,114 +167,104 @@ $(document).ready(function() {
     }
 
 
-function assignDeck() {
-    $('.card').each(function(index) {
-        $(this).attr('data-card-value', cards[index]);
-    });
-    clickHandler();
-}
-
-function clickHandler() {
-    $(".overlay-text-small").click(function() {
-        $("#game-over-text").removeClass("visible");
-    });
-
-    $('#save-button').on('click', function() {
-        $('#user-name').text($('#userName').val());
-        $('#user-country').text("Welcome" + " To " + $('#inputCountry').val() + "!");
-        // Consider using 'Switch Case' instead?
-        let userCountry = $('#inputCountry').val();
-        if (userCountry === 'South Africa') {
-            $('#user-country-pic').attr('src', 'assets/images/flags/south-africa.png');
-            $('.card-back-image').attr('src', 'assets/images/flags/south-africa.png');
-        } else if (userCountry === 'Ethiopia') {
-            $('#user-country-pic').attr('src', 'assets/images/flags/ethiopia.png');
-            $('.card-back-image').attr('src', 'assets/images/flags/ethiopia.png');
-        } else if (userCountry === 'Ghana') {
-            $('#user-country-pic').attr('src', 'assets/images/flags/ghana.png');
-            $('.card-back-image').attr('src', 'assets/images/flags/ghana.png');
-        } else if (userCountry === 'Kenya') {
-            $('#user-country-pic').attr('src', 'assets/images/flags/kenya.png');
-            $('.card-back-image').attr('src', 'assets/images/flags/kenya.png');
-        } else if (userCountry === 'Morocco') {
-            $('#user-country-pic').attr('src', 'assets/images/flags/morocco.png');
-            $('.card-back-image').attr('src', 'assets/images/flags/morocco.png');
-        } else if (userCountry === 'Nigeria') {
-            $('#user-country-pic').attr('src', 'assets/images/flags/nigeria.png');
-            $('.card-back-image').attr('src', 'assets/images/flags/nigeria.png');
-        };
-        userCountry = localStorage.setItem("userCountry", userCountry);
-        userName = localStorage.setItem("userName", $('#userName').val());
-    });
-
-
-    if ($(".card").hasClass("unmatched")) {
-        $('.unmatched').click(function() {
-            $(this).addClass("visible");
-            console.log($(this).data('cardValue'));
-            if (firstCard.length === 0) {
-                firstCard = [];
-                firstCard.push($(this).data('cardValue'));
-                $(this).addClass("checkForMatch");
-            } else if (firstCard.length >= 1 && secondCard.length === 0){
-                // secondCard = [];
-                secondCard.push($(this).data('cardValue'));
-                $(this).addClass("checkForMatch");
-                movesCount++;
-                $('#moves').text(movesCount)
-                checkMatch();
-            };
-            console.log(firstCard, secondCard);
+    function assignDeck() {
+        $('.card').each(function(index) {
+            $(this).attr('data-card-value', cards[index]);
         });
-    };
-}
+        clickHandler();
+    }
 
-function checkMatch() {
-    if (firstCard[0] === secondCard[0]) {
-        $(".visible").addClass("matched").removeClass("unmatched").removeClass("checkForMatch");
-        firstCard = [];
-        secondCard = [];
-    } else {
-        setTimeout(function() {
-            $(".unmatched").removeClass("visible").removeClass("checkForMatch");
+    function clickHandler() {
+        $(".overlay-text-small").click(function() {
+            $("#game-over-text").removeClass("visible");
+        });
+
+        $('#save-button').on('click', function() {
+
+            // Consider using 'Switch Case' instead?
+            let userName = $('#userName').val();
+            let userCountry = $('#inputCountry').val();
+
+            userCountry = localStorage.setItem("userCountry", userCountry);
+            userName = localStorage.setItem("userName", userName);
+            setupUser(userCountry, userName);
+        });
+
+
+        if ($(".card").hasClass("unmatched")) {
+            $('.unmatched').click(function() {
+                $(this).addClass("visible");
+                console.log($(this).data('cardValue'));
+                if (firstCard.length === 0) {
+                    firstCard = [];
+                    firstCard.push($(this).data('cardValue'));
+                    $(this).addClass("checkForMatch");
+                } else if (firstCard.length >= 1 && secondCard.length === 0){
+                    // secondCard = [];
+                    secondCard.push($(this).data('cardValue'));
+                    $(this).addClass("checkForMatch");
+                    movesCount++;
+                    $('#moves').text(movesCount)
+                    checkMatch();
+                };
+                console.log(firstCard, secondCard);
+            });
+        };
+    }
+
+    function checkMatch() {
+        if (firstCard[0] === secondCard[0]) {
+            $(".visible").addClass("matched").removeClass("unmatched").removeClass("checkForMatch");
             firstCard = [];
             secondCard = [];
-        }, 500)
-    };
-    checkWin();
-}
-
-function checkWin() {
-    if ($('.unmatched').length === 0) {
-        setTimeout(function() {
-            $("#victory-text").addClass("visible");
-        }, 500);
+        } else {
+            setTimeout(function() {
+                $(".unmatched").removeClass("visible").removeClass("checkForMatch");
+                firstCard = [];
+                secondCard = [];
+            }, 500)
+        };
+        checkWin();
     }
-    resetGame();
-}
 
-function resetGame() {
-    $(".overlay-text-small").click(function() {
-        $('.card').removeClass('visible').removeClass('matched');
-        secondsLeftDisplay;
-        movesCount = 0;
-        $('#moves').text(movesCount)
-        $('.overlay-text').removeClass('visible');
+    function checkWin() {
+        if ($('.unmatched').length === 0) {
+            setTimeout(function() {
+                $("#victory-text").addClass("visible");
+                resetGame();
+            }, 500);
+        }
+    }
+
+    function resetGame() {
+        $(".overlay-text-small").click(function() {
+            clearInterval();
+            $('.card').removeClass('visible matched deactivatedMode').addClass('unmatched');
+            secondsLeftDisplay.text();
+            movesCount = 0;
+            $('#moves').text(movesCount)
+            $('.overlay-text').removeClass('visible');
+        });
+
+    }
+
+    function deactivatedMode() {
+        //Disables buttons
+        $("button").prop("disabled", true).addClass('deactivatedMode');
+        return true;
+    }
+
+
+    /** Function for the Light-Dark Theme Toggle **/
+    $("#theme-toggle").click(function() {
+        var lightDarkSwitch = $("#stylesheet");
+        if (lightDarkSwitch.attr("href") == "assets/css/style.css") {
+            lightDarkSwitch.attr("href", "assets/css/style-dark.css");
+            console.log($("#stylesheet").attr("href"));
+        }  else {
+            lightDarkSwitch.attr("href", "assets/css/style.css");
+            console.log($("#stylesheet").attr("href"));
+        }
     });
-
-}
-
-
-/** Function for the Light-Dark Theme Toggle **/
-$("#theme-toggle").click(function() {
-    var lightDarkSwitch = $("#stylesheet");
-    if (lightDarkSwitch.attr("href") == "assets/css/style.css") {
-        lightDarkSwitch.attr("href", "assets/css/style-dark.css");
-        console.log($("#stylesheet").attr("href"));
-    }  else {
-        lightDarkSwitch.attr("href", "assets/css/style.css");
-        console.log($("#stylesheet").attr("href"));
-    }
-});
 
 })
