@@ -74,6 +74,8 @@ var easyTimer = 90;
 var mediumTimer = 60;
 var hardTimer = 30;
 
+var difficulty = 'easy';
+
 var secondsLeftDisplay = $("#seconds");
 var movesCount = 0;
 
@@ -87,18 +89,18 @@ $(document).ready(function() {
     The user is also required to select a country to visit which will tailor the game cards to the country.*/
 
     /* Shuffle method */
-    function shuffleDeck() { // Shuffles the right deck of cards
+    function shuffleDeck() {
         var random = 0;
         var temp = 0;
         var i = 0;
         console.log('Unshuffled Deck Array: ' + cards);
-        for (i; i < cards.length; i++) {  // Need to check that this shuffle method is ok!!!
+        for (i; i < cards.length; i++) {
             random = Math.round(Math.random() * i);
             temp = cards[i];
             cards[i] = cards[random];
             cards[random] = temp;
         }
-        // assignDeck();
+        assignDeck();
         console.log('Shuffled Deck Array: ' + cards);
     };
     shuffleDeck();
@@ -162,18 +164,17 @@ $(document).ready(function() {
 
     function loadTimer() {
         $('#easy-level').click(function() {
+            difficulty = 'easy';
             secondsLeftDisplay.text(easyTimer);
-            easyCountDownTimer();
         });
         $('#medium-level').click(function() {
+            difficulty = 'medium';
             secondsLeftDisplay.text(mediumTimer);
-            mediumCountDownTimer();
         });
         $('#hard-level').click(function() {
+            difficulty = 'hard';
             secondsLeftDisplay.text(hardTimer);
-            hardCountDownTimer();
         });
-        assignDeck();
     };
     loadTimer();
 
