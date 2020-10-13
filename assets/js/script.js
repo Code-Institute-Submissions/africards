@@ -235,7 +235,7 @@ $(document).ready(function() {
 
     function assignDeck() {
         $('.card').each(function(index) {
-            $(this).attr('data-card-value', cards[index]);
+            $(this).attr('data-card-value', cards[index].no);
         });
         $('.card-front-image').each(function(index) {
             $(this).attr('src', 'assets/images/' + userCountry + '/' + cards[index].img);
@@ -255,9 +255,11 @@ $(document).ready(function() {
             let userName = $('#userName').val();
             let userCountry = $('#inputCountry').val();
 
-            userCountry = localStorage.setItem("userCountry", userCountry);
-            userName = localStorage.setItem("userName", userName);
+            localStorage.setItem("userCountry", userCountry);
+            localStorage.setItem("userName", userName);
             setupUser(userCountry, userName);
+
+            $('#userProfileModal').modal('hide');
         });
 
 
