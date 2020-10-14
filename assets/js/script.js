@@ -76,6 +76,8 @@ var hardTimer = 10;
 
 var difficulty = 'easy';
 
+var timer;
+
 var secondsLeftDisplay = $("#seconds");
 var movesCount = 0;
 
@@ -88,20 +90,7 @@ $(document).ready(function() {
     /* The following code allows user information from the modal to be displayed on the page for a more personalised experience.
     The user is also required to select a country to visit which will tailor the game cards to the country.*/
 
-    /* Shuffle method */
-    function shuffleDeck() {
-        var random = 0;
-        var temp = 0;
-        var i = 0;
-        for (i; i < cards.length; i++) {
-            random = Math.round(Math.random() * i);
-            temp = cards[i];
-            cards[i] = cards[random];
-            cards[random] = temp;
-        }
-        assignDeck();
-    };
-    shuffleDeck();
+
 
 
 
@@ -120,7 +109,6 @@ $(document).ready(function() {
         } else {
             userName = localStorage.getItem("userName");
             userCountry = localStorage.getItem("userCountry");
-
         }
         setupUser(userCountry, userName);
     }
@@ -150,6 +138,21 @@ $(document).ready(function() {
             $('#user-country-pic').attr('src', 'assets/images/flags/nigeria.png');
             $('.card-back-image').attr('src', 'assets/images/flags/nigeria.png');
         };
+        shuffleDeck();
+    }
+
+    /* Shuffle method */
+    function shuffleDeck() {
+        var random = 0;
+        var temp = 0;
+        var i = 0;
+        for (i; i < cards.length; i++) {
+            random = Math.round(Math.random() * i);
+            temp = cards[i];
+            cards[i] = cards[random];
+            cards[random] = temp;
+        }
+        assignDeck();
     }
 
 
@@ -197,7 +200,6 @@ $(document).ready(function() {
         }, 1000);
         secondsLeftDisplay.text(mediumTimer);
     }
-
     function easyCountDownTimer() {
         deactivatedMode()
         var timer = setInterval(function() {
@@ -246,10 +248,10 @@ $(document).ready(function() {
             if (firstCard.length === 0) {
                 firstCard = [];
                 firstCard.push($(this).data('cardValue'));
-                $(this).addClass("checkForMatch");
+                $(this).addClass("checkForMatch").removeClass('unmatched');
             } else if (firstCard.length >= 1 && secondCard.length === 0){
                 secondCard.push($(this).data('cardValue'));
-                $(this).addClass("checkForMatch");
+                $(this).addClass("checkForMatch").removeClass('unmatched');
                 movesCount++;
                 $('#moves').text(movesCount);
                 checkMatch();
@@ -274,27 +276,27 @@ $(document).ready(function() {
             secondCard = [];
         } else {
             setTimeout(function() {
-                $(".unmatched").removeClass("visible").removeClass("checkForMatch");
+                $(".checkForMatch").removeClass("visible").removeClass("checkForMatch").addClass('unmatched');
                 firstCard = [];
                 secondCard = [];
             }, 500)
         };
-        checkWin();
+        gameWin();
     }
 
-    function checkWin() {
+    function gameWin() {
         if ($('.unmatched').length === 0) {
             clearInterval(timer);
             setTimeout(function() {
                 $("#victory-text").addClass("visible");
-                resetGame();
             }, 500);
         }
+        resetGame();
     }
 
     function resetGame() {
         $(".overlay-text-small").click(function() {
-            clearInterval();
+            clearInterval(timer);
             $('.card').removeClass('visible matched').addClass('unmatched');
             $("button").prop("disabled", false).removeClass('deactivatedMode');
             return false;
