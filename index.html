@@ -48,12 +48,12 @@
                                             <label for="inputCountry"><h3>Where to?</h3></label>
                                             <select id="inputCountry" class="form-control" required>
                                                 <option selected disabled>Choose...</option>
-                                                <option>Ethiopia</option>
-                                                <option>Ghana</option>
-                                                <option>Kenya</option>
-                                                <option>Morocco</option>
-                                                <option>Nigeria</option>
-                                                <option>South Africa</option>
+                                                <option value="ethiopia">Ethiopia</option>
+                                                <option value="ghana">Ghana</option>
+                                                <option value="kenya">Kenya</option>
+                                                <option value="morocco">Morocco</option>
+                                                <option value="nigeria">Nigeria</option>
+                                                <option value="south-africa">South Africa</option>
                                             </select>
                                         </div>
                                     </div>
@@ -73,7 +73,7 @@
                     <h2 class="user-profile">
                         Hello, <span id="user-name"></span>
                         <a data-toggle="modal" data-target="#userProfileModal">
-                            <i class="fas fa-user-edit"></i>
+                            <i class="fas fa-user-edit user-profile-icon"></i>
                         </a>
                     </h2>
 
@@ -93,9 +93,9 @@
                 </div>
                 <!-- Gameplay Control & Information -->
                 <div class="col-sm-8 offset-sm-2 col-md-12 offset-md-0 controls-container">
-                    <div class="controls-icons">
+                    <!-- <div class="controls-icons">
                         <button id="play-button"><i class="fas fa-play"></i></button>
-                    </div>
+                    </div> -->
                     <div class="controls-icons">
                         <button id="info-button"><i class="fas fa-info"></i></button>
                     </div>
