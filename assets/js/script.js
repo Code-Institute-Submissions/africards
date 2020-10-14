@@ -134,30 +134,24 @@ $(document).ready(function() {
         $('#user-name').text(userName);
         $('#user-country').text("Welcome" + " To " + userCountry + "!");
 
-        if (userCountry === 'South Africa') {
+        if (userCountry === 'south-africa') {
             $('#user-country-pic').attr('src', 'assets/images/flags/south-africa.png');
             $('.card-back-image').attr('src', 'assets/images/flags/south-africa.png');
-        } else if (userCountry === 'Ethiopia') {
+        } else if (userCountry === 'ethiopia') {
             $('#user-country-pic').attr('src', 'assets/images/flags/ethiopia.png');
             $('.card-back-image').attr('src', 'assets/images/flags/ethiopia.png');
-        } else if (userCountry === 'Ghana') {
+        } else if (userCountry === 'ghana') {
             $('#user-country-pic').attr('src', 'assets/images/flags/ghana.png');
             $('.card-back-image').attr('src', 'assets/images/flags/ghana.png');
-        } else if (userCountry === 'Kenya') {
+        } else if (userCountry === 'kenya') {
             $('#user-country-pic').attr('src', 'assets/images/flags/kenya.png');
             $('.card-back-image').attr('src', 'assets/images/flags/kenya.png');
-            $('.card-front-image').attr('src',function(index,attr){
-                return attr.replace('south-africa','kenya');
-            });
-        } else if (userCountry === 'Morocco') {
+        } else if (userCountry === 'morocco') {
             $('#user-country-pic').attr('src', 'assets/images/flags/morocco.png');
             $('.card-back-image').attr('src', 'assets/images/flags/morocco.png');
-        } else if (userCountry === 'Nigeria') {
+        } else if (userCountry === 'nigeria') {
             $('#user-country-pic').attr('src', 'assets/images/flags/nigeria.png');
             $('.card-back-image').attr('src', 'assets/images/flags/nigeria.png');
-            $('.card-front-image').attr('src',function(index,attr){
-                return attr.replace('south-africa','nigeria');
-            });
         };
     }
 
