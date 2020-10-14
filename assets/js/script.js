@@ -271,7 +271,6 @@ $(document).ready(function() {
                 firstCard.push($(this).data('cardValue'));
                 $(this).addClass("checkForMatch");
             } else if (firstCard.length >= 1 && secondCard.length === 0){
-                // secondCard = [];
                 secondCard.push($(this).data('cardValue'));
                 $(this).addClass("checkForMatch");
                 movesCount++;
@@ -279,8 +278,17 @@ $(document).ready(function() {
                 checkMatch();
             };
             console.log(firstCard, secondCard);
-            });
-        };
+            if (movesCount === 0) {
+                switch (difficulty) {
+                    case 'easy': easyCountDownTimer();
+                    break;
+                    case 'medium': mediumCountDownTimer();
+                    break;
+                    case 'hard': hardCountDownTimer();
+                    break;
+                }
+            }
+        });
     }
 
     function checkMatch() {
