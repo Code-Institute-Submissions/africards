@@ -179,59 +179,48 @@ $(document).ready(function() {
     loadTimer();
 
     function hardCountDownTimer() {
-        // if (hardTimer === secondsLeftDisplay.text(hardTimer)) {
-        $('#play-button').click(function() {
-            deactivatedMode()
-            var timer = setInterval(function() {
-                if (hardTimer <= 1) {
-                    clearInterval();
-                    $("#game-over-text").addClass("visible");
-                    resetGame();
-                } else {
-                    hardTimer--;
-                    secondsLeftDisplay.text(hardTimer);
-                };
-            }, 1000);
-        });
+        deactivatedMode()
+        var timer = setInterval(function() {
+            if (hardTimer <= 1) {
+                clearInterval(timer);
+                $("#game-over-text").addClass("visible");
+                resetGame();
+            } else {
+                hardTimer--;
+                secondsLeftDisplay.text(hardTimer);
+            };
+        }, 1000);
         secondsLeftDisplay.text(hardTimer);
     }
     function mediumCountDownTimer() {
-
-        // else if (mediumTimer === secondsLeftDisplay.text(mediumTimer)){
-        $('#play-button').click(function() {
-            deactivatedMode()
-            var timer = setInterval(function() {
-                if (mediumTimer <= 1) {
-                    clearInterval();
-                    $("#game-over-text").addClass("visible");
-                    resetGame();
-                } else {
-                    mediumTimer--;
-                    secondsLeftDisplay.text(mediumTimer);
-                };
-            }, 1000);
-        });
+        deactivatedMode()
+        var timer = setInterval(function() {
+            if (mediumTimer <= 1) {
+                clearInterval();
+                $("#game-over-text").addClass("visible");
+                resetGame();
+            } else {
+                mediumTimer--;
+                secondsLeftDisplay.text(mediumTimer);
+            };
+        }, 1000);
         secondsLeftDisplay.text(mediumTimer);
     }
 
     function easyCountDownTimer() {
-        // else {
-        $('#play-button').click(function() {
-            deactivatedMode()
-            var timer = setInterval(function() {
-                if (easyTimer <= 1) {
-                    clearInterval();
-                    $("#game-over-text").addClass("visible");
-                    resetGame();
-                } else {
-                    easyTimer--;
-                    secondsLeftDisplay.text(easyTimer);
-                };
-            }, 1000);
-        });
+        deactivatedMode()
+        var timer = setInterval(function() {
+            if (easyTimer <= 1) {
+                clearInterval();
+                $("#game-over-text").addClass("visible");
+                resetGame();
+            } else {
+                easyTimer--;
+                secondsLeftDisplay.text(easyTimer);
+            };
+        }, 1000);
         secondsLeftDisplay.text(easyTimer);
     }
-
 
     function assignDeck() {
         $('.card').each(function(index) {
@@ -261,7 +250,6 @@ $(document).ready(function() {
 
             $('#userProfileModal').modal('hide');
         });
-
 
         $('body').delegate('.unmatched', "click", function() {
             $(this).addClass("visible");
@@ -335,7 +323,7 @@ $(document).ready(function() {
     }
 
 
-    /** Function for the Light-Dark Theme Toggle **/
+    /* Function for the Light-Dark Theme Toggle */
     $("#theme-toggle").click(function() {
         var lightDarkSwitch = $("#stylesheet");
         if (lightDarkSwitch.attr("href") == "assets/css/style.css") {
@@ -346,5 +334,4 @@ $(document).ready(function() {
             console.log($("#stylesheet").attr("href"));
         }
     });
-
 })
