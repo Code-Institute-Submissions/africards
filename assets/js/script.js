@@ -72,7 +72,7 @@ var secondCard = [];
 
 var easyTimer = 90;
 var mediumTimer = 60;
-var hardTimer = 30;
+var hardTimer = 10;
 
 var difficulty = 'easy';
 
@@ -93,7 +93,6 @@ $(document).ready(function() {
         var random = 0;
         var temp = 0;
         var i = 0;
-        console.log('Unshuffled Deck Array: ' + cards);
         for (i; i < cards.length; i++) {
             random = Math.round(Math.random() * i);
             temp = cards[i];
@@ -101,7 +100,6 @@ $(document).ready(function() {
             cards[random] = temp;
         }
         assignDeck();
-        console.log('Shuffled Deck Array: ' + cards);
     };
     shuffleDeck();
 
@@ -124,7 +122,6 @@ $(document).ready(function() {
             userCountry = localStorage.getItem("userCountry");
 
         }
-        console.log(userCountry, userName);
         setupUser(userCountry, userName);
     }
     checkUserData();
@@ -190,7 +187,7 @@ $(document).ready(function() {
         deactivatedMode()
         var timer = setInterval(function() {
             if (mediumTimer <= 1) {
-                clearInterval();
+                clearInterval(timer);
                 $("#game-over-text").addClass("visible");
                 resetGame();
             } else {
@@ -205,7 +202,7 @@ $(document).ready(function() {
         deactivatedMode()
         var timer = setInterval(function() {
             if (easyTimer <= 1) {
-                clearInterval();
+                clearInterval(timer);
                 $("#game-over-text").addClass("visible");
                 resetGame();
             } else {
@@ -222,7 +219,6 @@ $(document).ready(function() {
         });
         $('.card-front-image').each(function(index) {
             $(this).attr('src', 'assets/images/' + userCountry + '/' + cards[index].img);
-            console.log(this);
         });
         clickHandler();
     }
@@ -247,7 +243,6 @@ $(document).ready(function() {
 
         $('body').delegate('.unmatched', "click", function() {
             $(this).addClass("visible");
-            console.log($(this).data('cardValue'));
             if (firstCard.length === 0) {
                 firstCard = [];
                 firstCard.push($(this).data('cardValue'));
@@ -259,7 +254,6 @@ $(document).ready(function() {
                 $('#moves').text(movesCount);
                 checkMatch();
             };
-            console.log(firstCard, secondCard);
             if (movesCount === 0) {
                 switch (difficulty) {
                     case 'easy': easyCountDownTimer();
@@ -290,6 +284,7 @@ $(document).ready(function() {
 
     function checkWin() {
         if ($('.unmatched').length === 0) {
+            clearInterval(timer);
             setTimeout(function() {
                 $("#victory-text").addClass("visible");
                 resetGame();
@@ -304,8 +299,7 @@ $(document).ready(function() {
             $("button").prop("disabled", false).removeClass('deactivatedMode');
             return false;
             secondsLeftDisplay.text();
-            movesCount = 0;
-            $('#moves').text(movesCount)
+            $('#moves').text(0)
             $('.overlay-text').removeClass('visible');
         });
     }
@@ -322,10 +316,8 @@ $(document).ready(function() {
         var lightDarkSwitch = $("#stylesheet");
         if (lightDarkSwitch.attr("href") == "assets/css/style.css") {
             lightDarkSwitch.attr("href", "assets/css/style-dark.css");
-            console.log($("#stylesheet").attr("href"));
         }  else {
             lightDarkSwitch.attr("href", "assets/css/style.css");
-            console.log($("#stylesheet").attr("href"));
         }
     });
 })
