@@ -263,23 +263,22 @@ $(document).ready(function() {
         });
 
 
-        if ($(".card").hasClass("unmatched")) {
-            $('.unmatched').click(function() {
-                $(this).addClass("visible");
-                console.log($(this).data('cardValue'));
-                if (firstCard.length === 0) {
-                    firstCard = [];
-                    firstCard.push($(this).data('cardValue'));
-                    $(this).addClass("checkForMatch");
-                } else if (firstCard.length >= 1 && secondCard.length === 0){
-                    // secondCard = [];
-                    secondCard.push($(this).data('cardValue'));
-                    $(this).addClass("checkForMatch");
-                    movesCount++;
-                    $('#moves').text(movesCount)
-                    checkMatch();
-                };
-                console.log(firstCard, secondCard);
+        $('body').delegate('.unmatched', "click", function() {
+            $(this).addClass("visible");
+            console.log($(this).data('cardValue'));
+            if (firstCard.length === 0) {
+                firstCard = [];
+                firstCard.push($(this).data('cardValue'));
+                $(this).addClass("checkForMatch");
+            } else if (firstCard.length >= 1 && secondCard.length === 0){
+                // secondCard = [];
+                secondCard.push($(this).data('cardValue'));
+                $(this).addClass("checkForMatch");
+                movesCount++;
+                $('#moves').text(movesCount);
+                checkMatch();
+            };
+            console.log(firstCard, secondCard);
             });
         };
     }
