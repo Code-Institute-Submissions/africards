@@ -318,13 +318,14 @@ $(document).ready(function() {
     function resetGame() {
         $(".overlay-text-small").click(function() {
             clearInterval();
-            $('.card').removeClass('visible matched deactivatedMode').addClass('unmatched');
+            $('.card').removeClass('visible matched').addClass('unmatched');
+            $("button").prop("disabled", false).removeClass('deactivatedMode');
+            return false;
             secondsLeftDisplay.text();
             movesCount = 0;
             $('#moves').text(movesCount)
             $('.overlay-text').removeClass('visible');
         });
-
     }
 
     function deactivatedMode() {
