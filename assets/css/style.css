@@ -133,6 +133,13 @@ body {
     text-align: center;
 }
 
+.input-country-title {
+    font-size: 1.5em;
+    margin-left: 0;
+    margin-right: 0;
+    font-weight: bold;
+}
+
 .modal-footer {
     background-color: #e6b145;
     display: block;
