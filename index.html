@@ -12,12 +12,12 @@
 <body>
     <!-- Game Over -->
     <div id="game-over-text" class="container-fluid overlay-text">
-        GAME OVER
+        <h1 class="overlay-text-large">GAME OVER</h1>
         <span class="overlay-text-small">Click here to Restart</span>
     </div>
     <!-- Game Win -->
     <div id="victory-text" class="container-fluid overlay-text">
-        VICTORY!
+        <h1 class="overlay-text-large">VICTORY!</h1>
         <span class="overlay-text-small">Click here to Restart</span>
     </div>
     <!-- Game Control Panel -->
@@ -38,30 +38,30 @@
                                         <h1 class="modal-title">User Profile</h1>
                                     </div>
                                     <form onsubmit="return false;">
-                                    <div class="modal-body">
-                                        <h3>What is your name?</h3>
-                                        <input class="form-control" name="userName" id="userName" required/>
-                                    </div>
-                                    <div class="modal-body">
-                                        <div class="form-group">
-                                            <label for="inputCountry"><h3>Where to?</h3></label>
-                                            <select id="inputCountry" class="form-control" required>
-                                                <option selected disabled>Choose...</option>
-                                                <option value="ethiopia">Ethiopia</option>
-                                                <option value="ghana">Ghana</option>
-                                                <option value="kenya">Kenya</option>
-                                                <option value="morocco">Morocco</option>
-                                                <option value="nigeria">Nigeria</option>
-                                                <option value="south-africa">South Africa</option>
-                                            </select>
+                                        <div class="modal-body">
+                                            <h3>What is your name?</h3>
+                                            <input class="form-control" name="userName" id="userName" required/>
                                         </div>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button id="save-button" type="submit" class="btn save-button">
-                                            <h3>Save</h3>
-                                        </button>
-                                    </div>
-                                </form>
+                                        <div class="modal-body">
+                                            <div class="form-group">
+                                                <label for="inputCountry"><h3>Where to?</h3></label>
+                                                <select id="inputCountry" class="form-control" required>
+                                                    <option selected disabled>Choose...</option>
+                                                    <option value="ethiopia">Ethiopia</option>
+                                                    <option value="ghana">Ghana</option>
+                                                    <option value="kenya">Kenya</option>
+                                                    <option value="morocco">Morocco</option>
+                                                    <option value="nigeria">Nigeria</option>
+                                                    <option value="south-africa">South Africa</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button id="save-button" type="submit" class="btn save-button">
+                                                <h3>Save</h3>
+                                            </button>
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -86,23 +86,11 @@
                 </div>
                 <!-- Game Level Selector -->
                 <div class="col-sm-8 offset-sm-2 col-md-12 offset-md-0 level-container">
-                        <button id="easy-level" class="level-text">Easy</button>
-                        <button id="medium-level" class="level-text">Med</button>
-                        <button id="hard-level" class="level-text">Hard</button>
+                    <button id="easy-level" class="level-text">Easy</button>
+                    <button id="medium-level" class="level-text">Med</button>
+                    <button id="hard-level" class="level-text">Hard</button>
                 </div>
-                <div class="overlay-text">
-                <div class="modal-body level-selector" id="level-selector">
-                    <div class="form-group">
-                        <label for="inputCountry"><h3>Select a level</h3></label>
-                        <select id="inputCountry" class="form-control" required>
-                            <option selected disabled>Choose...</option>
-                            <option>Easy</option>
-                            <option>Medium</option>
-                            <option>Hard</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
+
 
                 <!-- Gameplay Control & Information -->
                 <div class="col-sm-8 offset-sm-2 col-md-12 offset-md-0 controls-container">
