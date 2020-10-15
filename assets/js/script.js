@@ -216,7 +216,7 @@ $(document).ready(function() {
                 $(this).addClass("checkForMatch").removeClass('unmatched'); // Adding a temporary class 'checkForMatch' to check value with other checkForMatch card.
                 checkMatch();
             };
-            if ((movesCount === 0) && ((secondsLeftDisplay === 90) || (secondsLeftDisplay === 30) || (secondsLeftDisplay === 10))) {
+            if (movesCount === 0) {
                 switch (difficulty) {
                     case 'easy': easyCountDownTimer();
                     break;
