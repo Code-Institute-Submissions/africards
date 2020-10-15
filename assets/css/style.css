@@ -118,12 +118,9 @@ body {
 
 .modal-header {
     background-color: #e6b145;
-    display: flex;
+    display: block;
     text-align: center;
-}
-
-.modal-header button {
-    font-size: 2em;
+    border: none;
 }
 
 .modal-body {
@@ -269,11 +266,11 @@ https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_buttons_animate3 *
     background-color: #6e4949;
 }
 
-.controls-icons {
+.info-button-container {
     display: inline-block;
 }
 
-.controls-icons button {
+.info-button-container button {
     background: none;
     border: none;
 }
