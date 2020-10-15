@@ -266,11 +266,11 @@ https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_buttons_animate3 *
     background-color: #e6b145;
 }
 
-.controls-icons {
+.info-button-container {
     display: inline-block;
 }
 
-.controls-icons button {
+.info-button-container button {
     background: none;
     border: none;
 }
