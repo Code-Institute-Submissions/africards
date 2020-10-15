@@ -36,7 +36,6 @@
                                 <div class="col-12">
                                     <div class="modal-header">
                                         <h1 class="modal-title">User Profile</h1>
-                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
                                     </div>
                                     <form onsubmit="return false;">
                                     <div class="modal-body">
@@ -93,11 +92,32 @@
                 </div>
                 <!-- Gameplay Control & Information -->
                 <div class="col-sm-8 offset-sm-2 col-md-12 offset-md-0 controls-container">
-                    <!-- <div class="controls-icons">
-                        <button id="play-button"><i class="fas fa-play"></i></button>
-                    </div> -->
-                    <div class="controls-icons">
-                        <button id="info-button"><i class="fas fa-info"></i></button>
+                    <div class="info-button-container">
+                        <button id="info-button" data-toggle="modal" data-target="#infoModal"><i class="fas fa-info"></i></button>
+                        <div class="modal fade" id="infoModal" role="dialog">
+                            <div class="modal-dialog">
+                                <div class="modal-content container-fluid">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div class="modal-header">
+                                                <h1 class="modal-title">How to Play</h1>
+                                            </div>
+                                            <div class="modal-body">
+                                                <h5>1. The countdown timer will start once you click on your first card to flip.</h5>
+                                                <h5>2. Find matching pairs for each card before the countdown reaches 0.</h5>
+                                                <h5>3. When you have found a matching pair, these will stay flipped.</h5><br/>
+                                                <h3>Best of luck! ^_^</h3>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn save-button" data-dismiss="modal">
+                                                    <h3>✓</h3>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <!-- Light & Dark Mode Switch -->
