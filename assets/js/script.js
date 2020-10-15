@@ -77,6 +77,7 @@ var hardTimer = 10;
 var difficulty = 'easy';
 
 var timer;
+var defaultLevelTime;
 
 var secondsLeftDisplay = $("#seconds");
 var movesCount = 0;
@@ -160,17 +161,19 @@ $(document).ready(function() {
         $('#easy-level').click(function() {
             difficulty = 'easy';
             secondsLeftDisplay.text(easyTimer);
+            defaultLevelTime = secondsLeftDisplay.text();
         });
         $('#medium-level').click(function() {
             difficulty = 'medium';
             secondsLeftDisplay.text(mediumTimer);
+            defaultLevelTime = secondsLeftDisplay.text();
         });
         $('#hard-level').click(function() {
             difficulty = 'hard';
             secondsLeftDisplay.text(hardTimer);
+            defaultLevelTime = secondsLeftDisplay.text();
         });
     };
-    loadTimer();
 
     function hardCountDownTimer() {
         deactivatedMode()
@@ -222,13 +225,14 @@ $(document).ready(function() {
         $('.card-front-image').each(function(index) {
             $(this).attr('src', 'assets/images/' + userCountry + '/' + cards[index].img);
         });
-        clickHandler();
+        loadTimer();
+        clickHandlers();
     }
 
-    function clickHandler() {
-        $(".overlay-text-small").click(function() {
-            $("#game-over-text").removeClass("visible");
-        });
+    function clickHandlers() {
+        // $(".overlay-text-small").click(function() {
+        //     $("#game-over-text").removeClass("visible");
+        // });
 
         $('#save-button').on('click', function() {
 
@@ -286,23 +290,26 @@ $(document).ready(function() {
 
     function gameWin() {
         if ($('.unmatched').length === 0) {
-            clearInterval(timer);
             setTimeout(function() {
                 $("#victory-text").addClass("visible");
             }, 500);
         }
+        clearInterval(timer);
         resetGame();
     }
 
     function resetGame() {
         $(".overlay-text-small").click(function() {
-            clearInterval(timer);
-            $('.card').removeClass('visible matched').addClass('unmatched');
+          // timer;
+            $('.card').removeClass('visible matched checkForMatch').addClass('unmatched');
             $("button").prop("disabled", false).removeClass('deactivatedMode');
-            return false;
-            secondsLeftDisplay.text();
+            // return false;
+            console.log(defaultLevelTime);
+            secondsLeftDisplay.text(defaultLevelTime);
             $('#moves').text(0)
             $('.overlay-text').removeClass('visible');
+            firstCard = [];
+            secondCard = [];
         });
     }
 
