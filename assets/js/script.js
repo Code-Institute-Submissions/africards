@@ -81,11 +81,12 @@ var defaultLevelTime;
 
 var secondsLeftDisplay = $("#seconds");
 var movesCount = 0;
+var flipCount = 0;
 
 var userCountry = localStorage.getItem("userCountry");
 var userName = localStorage.getItem("userName");
 
-/* ----------------------------------------------------------------- List of Game Play functions */
+/* ----------------------------------------------------------------- List of Game Play Functions */
 
 $(document).ready(function() {
 
@@ -120,8 +121,8 @@ $(document).ready(function() {
         $('#user-country').text("Welcome" + " To " + userCountry + "!");
 
         if (userCountry === 'south-africa') {
-            $('#user-country-pic').attr('src', 'assets/images/flags/south-africa.png');
-            $('.card-back-image').attr('src', 'assets/images/flags/south-africa.png');
+            $('#user-country-pic').attr('src', 'assets/images/flags/south-africa.png'); // Changes the flag picture underneath the "Hi + userNeme"
+            $('.card-back-image').attr('src', 'assets/images/flags/south-africa.png'); // Changes the flag picture on the back of the cards
         } else if (userCountry === 'ethiopia') {
             $('#user-country-pic').attr('src', 'assets/images/flags/ethiopia.png');
             $('.card-back-image').attr('src', 'assets/images/flags/ethiopia.png');
@@ -184,6 +185,13 @@ $(document).ready(function() {
 
     /* ------------------------------------------------------------- Click Handlers */
 
+    /* These click handlers cover:
+    - The event that the user clicks the save button in the '#userProfileModal'.
+    - The event that the user clicks the cards.
+    - The type of timer run once user clicks their first card.
+    (This is dependent on the value of the 'difficulty' variable; which
+    by default is set to 'easy'). */
+
     function clickHandlers() {
         $('#save-button').on('click', function() {
             let userName = $('#userName').val();
@@ -200,15 +208,15 @@ $(document).ready(function() {
             $(this).addClass("visible");
             if (firstCard.length === 0) {
                 firstCard.push($(this).data('cardValue'));
-                $(this).addClass("checkForMatch").removeClass('unmatched');
-            } else if (firstCard.length >= 1 && secondCard.length === 0){
+                flipCount++;
+                $(this).addClass("checkForMatch").removeClass('unmatched'); // Adding a temporary class 'checkForMatch' which will be removed once another card is picked.
+            } else if (firstCard.length >= 1 && secondCard.length === 0){ // Once the firstCard.length is more than 1, the value of the next card will be pushed to secondCard.
                 secondCard.push($(this).data('cardValue'));
-                $(this).addClass("checkForMatch").removeClass('unmatched');
-                movesCount++;
-                $('#moves').text(movesCount);
+                flipCount++;
+                $(this).addClass("checkForMatch").removeClass('unmatched'); // Adding a temporary class 'checkForMatch' to check value with other checkForMatch card.
                 checkMatch();
             };
-            if (movesCount === 0) {
+            if ((movesCount === 0) && ((secondsLeftDisplay === 90) || (secondsLeftDisplay === 30) || (secondsLeftDisplay === 10))) {
                 switch (difficulty) {
                     case 'easy': easyCountDownTimer();
                     break;
@@ -221,20 +229,35 @@ $(document).ready(function() {
         });
     }
 
+    /* ------------------------------------------------------------- Checking Cards for Match */
+
+    /* This function checks that the value in the firstCard array
+    is identical to the value in the secondCard array. If so, then
+    the 'matched' class is added and the array is reset to empty. If not
+    identical, then the card is flipped back by removing the 'visible' class
+    and remains unmatched*/
+
     function checkMatch() {
         if (firstCard[0] === secondCard[0]) {
             $(".visible").addClass("matched").removeClass("unmatched checkForMatch");
             firstCard = [];
             secondCard = [];
+            countMoves();
         } else {
             setTimeout(function() {
                 $(".checkForMatch").removeClass("visible checkForMatch").addClass('unmatched');
                 firstCard = [];
                 secondCard = [];
+                countMoves();
             }, 500)
         };
         gameWin();
     }
+
+    /* ------------------------------------------------------------- User Winning the Game */
+
+    /* This function loads a screen-wide element with class 'overlay-text'
+    Timer will stop counting down.*/
 
     function gameWin() {
         if ($('.unmatched').length === 0) {
@@ -246,25 +269,44 @@ $(document).ready(function() {
         resetGame();
     }
 
+    function countMoves() {
+        let movesCounted = movesCount;
+        if ((flipCount) % 2 === 0) {
+            movesCount++;
+        }
+        $('#moves').text(movesCount);
+    }
+
+    /* ------------------------------------------------------------- Resetting the Game */
+
+    /* All classes are reset and the user will have to choose a level to
+    restart the game in. */
+
     function resetGame() {
         $(".overlay-text-small").click(function() {
             // timer;
+            $('.overlay-text').removeClass('visible');
             $('.card').removeClass('visible matched checkForMatch').addClass('unmatched');
             $(".level-container button").prop("disabled", false).removeClass('deactivatedMode');
             // return false;
             loadTimer();
-            console.log(defaultLevelTime);
+            // console.log(defaultLevelTime);
             secondsLeftDisplay.text(defaultLevelTime);
             difficulty;
             shuffleDeck();
             movesCount = 0;
+            flipCount = 0;
+            // countMoves();
             $('#moves').text(movesCount);
-            $('.overlay-text').removeClass('visible');
-            firstCard = [];
-            secondCard = [];
-            $('.level-selector overlay-text').addClass('visible');
+            // firstCard = [];
+            // secondCard = [];
         });
     }
+
+    /* ------------------------------------------------------------- Loading the Timer */
+
+    /* Depending on which level the user clicks, the game script will
+    run one of those within the loadTimer() function. */
 
     function loadTimer() {
         $('#easy-level').click(function() {
@@ -283,6 +325,13 @@ $(document).ready(function() {
             defaultLevelTime;
         });
     };
+
+    /* ------------------------------------------------------------- Running the Timer */
+
+    /* Bug fix resulted in separating the countdowns into 3 types.
+    These correspond to the levels and the function called depends
+    on the level that the user selects. */
+
 
     function hardCountDownTimer() {
         deactivatedMode()
@@ -326,26 +375,18 @@ $(document).ready(function() {
         secondsLeftDisplay.text(easyTimer);
     }
 
+    /* ------------------------------------------------------------- Deactivation Mode */
+
+    /* As the timer counts down, the user will be unable to change
+    levels mid-game. */
+
     function deactivatedMode() {
         //Disables buttons
         $(".level-container button").prop("disabled", true).addClass('deactivatedMode');
         return true;
     }
 
-    // function newCountdown() {
-    //     var timer = setInterval(function() {
-    //         if ($('#seconds') <= 1) {
-    //             clearInterval(timer);
-    //             $("#game-over-text").addClass("visible");
-    //             resetGame();
-    //         } else {
-    //             $('#seconds')--;
-    //             secondsLeftDisplay.text($('#seconds'));
-    //         };
-    //     }, 1000);
-    //     secondsLeftDisplay.text($('#seconds'));
-    // }
-
+    /* ------------------------------------------------------------- Light / Dark Modes */
 
     /* Function for the Light-Dark Theme Toggle */
     $("#theme-toggle").click(function() {
