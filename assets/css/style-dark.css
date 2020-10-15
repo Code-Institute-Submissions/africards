@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Barriecito&display=swap');
+
 html {
     min-height: 100vh;
     cursor: url("../cursors/africa-dark.cur"), auto;
@@ -5,6 +7,10 @@ html {
 
 body {
     font-family: 'Barriecito', cursive;
+}
+
+.game-container {
+    min-height: 100vh;
 }
 
 .game-control {
@@ -371,10 +377,13 @@ transition: transform 500ms ease-in-out;
 
 /* ----------------------------------------------------------------- Media Queries */
 
-@media (max-width: 414px) {
+@media (max-width: 320px) {
+    .game-controls {
+        height: 100%;
+    }
 
     .game-title {
-        font-size: 2.5em;
+        font-size: 2em;
     }
 
     .game-country {
@@ -403,8 +412,6 @@ transition: transform 500ms ease-in-out;
         height: 85px;
     }
 }
-
-/* ----------------------------------------------------------------- Media Queries */
 
 @media screen and (min-width: 321px) and (max-width: 414px) {
 
