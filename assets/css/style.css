@@ -45,10 +45,15 @@ body {
     color: #FF6D00;
     font-family: 'Barriecito', cursive;
     display: none;
+    text-align: center;
+}
+
+.overlay-text-large {
+    font-size: 0.7em;
 }
 
 .overlay-text-small {
-    font-size: 0.3em;
+    font-size: 0.2em;
 }
 
 .overlay-text.visible {
