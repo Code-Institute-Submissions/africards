@@ -174,10 +174,10 @@ $(document).ready(function() {
 
     function assignDeck() {
         $('.card').each(function(index) {
-            $(this).attr('data-card-value', cards[index].no);
+            $(this).attr('data-card-value', cards[index].no); // Changes the data card value number to match the names of the photos e.g. image one.jpg has data-card-value = 1.
         });
         $('.card-front-image').each(function(index) {
-            $(this).attr('src', 'assets/images/' + userCountry + '/' + cards[index].img);
+            $(this).attr('src', 'assets/images/' + userCountry + '/' + cards[index].img); // Changes images on the card's front to those of the user's chosen country.
         });
         loadTimer();
         clickHandlers();
@@ -193,7 +193,7 @@ $(document).ready(function() {
     by default is set to 'easy'). */
 
     function clickHandlers() {
-        $('#save-button').on('click', function() {
+        $('#save-button').on('click', function() { // This code is for the User Profile Modal. It handles the event after clicking "save".
             let userName = $('#userName').val();
             let userCountry = $('#inputCountry').val();
 
@@ -204,7 +204,9 @@ $(document).ready(function() {
             $('#userProfileModal').modal('hide');
         });
 
-        $('body').delegate('.unmatched', "click", function() { // This line allows only the cards with the unmatched class to be selected. If matched, the function does not apply.
+        /* This code allows only the cards with the unmatched class
+        to be selected. If matched, the function does not apply.*/
+        $('body').delegate('.unmatched', "click", function() {
             $(this).addClass("visible");
             if (firstCard.length === 0) {
                 firstCard.push($(this).data('cardValue'));
@@ -265,7 +267,6 @@ $(document).ready(function() {
                 $("#victory-text").addClass("visible");
             }, 500);
         }
-        clearInterval(timer);
         resetGame();
     }
 
@@ -293,17 +294,18 @@ $(document).ready(function() {
             $('.card').removeClass('visible matched checkForMatch').addClass('unmatched');
             $(".level-container button").prop("disabled", false).removeClass('deactivatedMode');
             // return false;
-            loadTimer();
             // console.log(defaultLevelTime);
-            secondsLeftDisplay.text(defaultLevelTime);
-            difficulty;
+            difficulty = 'easy';
+            loadTimer();
+            // secondsLeftDisplay.text(defaultLevelTime);
             shuffleDeck();
             movesCount = 0;
             flipCount = 0;
+            movesCounted = 0;
             // countMoves();
             $('#moves').text(movesCount);
-            // firstCard = [];
-            // secondCard = [];
+            firstCard = [];
+            secondCard = [];
         });
     }
 
