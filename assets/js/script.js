@@ -161,6 +161,7 @@ $(document).ready(function() {
             cards[i] = cards[random];
             cards[random] = temp;
         }
+        console.log(userCountry);
         assignDeck();
     }
 
@@ -176,6 +177,8 @@ $(document).ready(function() {
         $('.card').each(function(index) {
             $(this).attr('data-card-value', cards[index].no); // Changes the data card value number to match the names of the photos e.g. image one.jpg has data-card-value = 1.
         });
+        // debugger;
+        console.log(userCountry);
         $('.card-front-image').each(function(index) {
             $(this).attr('src', 'assets/images/' + userCountry + '/' + cards[index].img); // Changes images on the card's front to those of the user's chosen country.
         });
@@ -194,15 +197,18 @@ $(document).ready(function() {
 
     function clickHandlers() {
         $('#save-button').on('click', function() { // This code is for the User Profile Modal. It handles the event after clicking "save".
+                // debugger;
             let userName = $('#userName').val();
             let userCountry = $('#inputCountry').val();
 
             localStorage.setItem("userCountry", userCountry);
             localStorage.setItem("userName", userName);
+            location.reload();
             setUpUser(userCountry, userName);
-
+            // debugger;
             $('#userProfileModal').modal('hide');
         });
+        
 
         /* This code allows only the cards with the unmatched class
         to be selected. If matched, the function does not apply.*/
@@ -265,6 +271,7 @@ $(document).ready(function() {
         if ($('.unmatched').length === 0) {
             setTimeout(function() {
                 $("#victory-text").addClass("visible");
+            clearInterval(timer);
             }, 500);
         }
         resetGame();
