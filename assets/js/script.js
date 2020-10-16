@@ -72,7 +72,7 @@ var secondCard = [];
 
 var easyTimer = 90;
 var mediumTimer = 60;
-var hardTimer = 10;
+var hardTimer = 8;
 
 var difficulty = 'easy';
 
@@ -80,7 +80,8 @@ var timer;
 var defaultLevelTime;
 
 var secondsLeftDisplay = $("#seconds");
-var movesCount = 0;
+var turns = 0;
+var movesCounted = 0;
 var flipCount = 0;
 
 var userCountry = localStorage.getItem("userCountry");
@@ -161,7 +162,6 @@ $(document).ready(function() {
             cards[i] = cards[random];
             cards[random] = temp;
         }
-        console.log(userCountry);
         assignDeck();
     }
 
@@ -178,7 +178,6 @@ $(document).ready(function() {
             $(this).attr('data-card-value', cards[index].no); // Changes the data card value number to match the names of the photos e.g. image one.jpg has data-card-value = 1.
         });
         // debugger;
-        console.log(userCountry);
         $('.card-front-image').each(function(index) {
             $(this).attr('src', 'assets/images/' + userCountry + '/' + cards[index].img); // Changes images on the card's front to those of the user's chosen country.
         });
@@ -216,15 +215,18 @@ $(document).ready(function() {
             $(this).addClass("visible");
             if (firstCard.length === 0) {
                 firstCard.push($(this).data('cardValue'));
-                flipCount++;
+                // flipCount++;
                 $(this).addClass("checkForMatch").removeClass('unmatched'); // Adding a temporary class 'checkForMatch' which will be removed once another card is picked.
             } else if (firstCard.length >= 1 && secondCard.length === 0){ // Once the firstCard.length is more than 1, the value of the next card will be pushed to secondCard.
                 secondCard.push($(this).data('cardValue'));
-                flipCount++;
+                // flipCount++;
                 $(this).addClass("checkForMatch").removeClass('unmatched'); // Adding a temporary class 'checkForMatch' to check value with other checkForMatch card.
                 checkMatch();
+            } else {
+                return false;
             };
-            if ((movesCount === 0) && (secondCard.length === 0)) { // BUG FIX: Needed to make sure that array of secondCard is also empty so that this function is not running twice on second card flip.
+
+            if ((turns === 0) && (secondCard.length === 0)) { // BUG FIX: Needed to make sure that array of secondCard is also empty so that this function is not running twice on second card flip.
                 switch (difficulty) {
                     case 'easy': easyCountDownTimer();
                     break;
@@ -232,7 +234,9 @@ $(document).ready(function() {
                     break;
                     case 'hard': hardCountDownTimer();
                     break;
+                    default: return false;
                 }
+                return difficulty;  
             }
         });
     }
@@ -250,15 +254,14 @@ $(document).ready(function() {
             $(".visible").addClass("matched").removeClass("unmatched checkForMatch");
             firstCard = [];
             secondCard = [];
-            countMoves();
         } else {
             setTimeout(function() {
                 $(".checkForMatch").removeClass("visible checkForMatch").addClass('unmatched');
                 firstCard = [];
                 secondCard = [];
-                countMoves();
             }, 500)
         };
+        countMoves();
         gameWin();
     }
 
@@ -269,12 +272,13 @@ $(document).ready(function() {
 
     function gameWin() {
         if ($('.unmatched').length === 0) {
+            clearInterval(timer);
             setTimeout(function() {
                 $("#victory-text").addClass("visible");
-            clearInterval(timer);
             }, 500);
+        } else {
+            return false;
         }
-        resetGame();
     }
 
     /* ------------------------------------------------------------- Counting the User's Moves */
@@ -282,11 +286,14 @@ $(document).ready(function() {
     /* When the user flips 2 cards, this equates to 1 move.*/
 
     function countMoves() {
-        let movesCounted = movesCount;
+        let movesCounted = 0;
+        movesCounted = turns;
         if ((flipCount) % 2 === 0) {
-            movesCount++;
+            turns++;
+        } else {
+            return false;
         }
-        $('#moves').text(movesCount);
+        $('#moves').text(turns);
     }
 
     /* ------------------------------------------------------------- Resetting the Game */
@@ -300,20 +307,39 @@ $(document).ready(function() {
             $('.overlay-text').removeClass('visible');
             $('.card').removeClass('visible matched checkForMatch').addClass('unmatched');
             $(".level-container button").prop("disabled", false).removeClass('deactivatedMode');
-            // return false;
-            // console.log(defaultLevelTime);
-            difficulty = 'easy';
-            loadTimer();
-            // secondsLeftDisplay.text(defaultLevelTime);
+            console.log(defaultLevelTime);
+            difficulty;
+            resetTimer(difficulty);
             shuffleDeck();
-            movesCount = 0;
+            turns = 0;
             flipCount = 0;
             movesCounted = 0;
             // countMoves();
-            $('#moves').text(movesCount);
+            $('#moves').text(turns);
             firstCard = [];
             secondCard = [];
         });
+    }
+    resetGame();
+
+    function resetTimer(difficulty) {
+        console.log(difficulty);
+        if (difficulty = 'easy') {
+            var defaultLevelTime = secondsLeftDisplay.text(easyTimer);
+            defaultLevelTime;
+            // easyCountDownTimer();
+        } else if (difficulty = 'medium') {
+            var defaultLevelTime = secondsLeftDisplay.text(mediumTimer);
+            defaultLevelTime;
+            // mediumCountDownTimer();
+        } else if (difficulty === 'hard') {
+            var defaultLevelTime = secondsLeftDisplay.text(10);
+            defaultLevelTime;
+            // hardCountDownTimer();
+        } else {
+            return false;
+        }
+        clickHandlers();
     }
 
     /* ------------------------------------------------------------- Loading the Timer */
@@ -324,17 +350,17 @@ $(document).ready(function() {
     function loadTimer() {
         $('#easy-level').click(function() {
             difficulty = 'easy';
-            let defaultLevelTime = secondsLeftDisplay.text(easyTimer);
+            var defaultLevelTime = secondsLeftDisplay.text(easyTimer);
             defaultLevelTime;
         });
         $('#medium-level').click(function() {
             difficulty = 'medium';
-            let defaultLevelTime = secondsLeftDisplay.text(mediumTimer);
+            var defaultLevelTime = secondsLeftDisplay.text(mediumTimer);
             defaultLevelTime;
         });
         $('#hard-level').click(function() {
             difficulty = 'hard';
-            let defaultLevelTime = secondsLeftDisplay.text(hardTimer);
+            var defaultLevelTime = secondsLeftDisplay.text(hardTimer);
             defaultLevelTime;
         });
     };
@@ -352,6 +378,7 @@ $(document).ready(function() {
             if (hardTimer <= 1) {
                 clearInterval(timer);
                 $("#game-over-text").addClass("visible");
+                return false;
             } else {
                 hardTimer--;
                 secondsLeftDisplay.text(hardTimer);
@@ -366,12 +393,14 @@ $(document).ready(function() {
             if (mediumTimer <= 1) {
                 clearInterval(timer);
                 $("#game-over-text").addClass("visible");
+                return false;
             } else {
                 mediumTimer--;
                 secondsLeftDisplay.text(mediumTimer);
             };
         }, 1000);
         secondsLeftDisplay.text(mediumTimer);
+        return false;
     }
 
     function easyCountDownTimer() {
@@ -380,12 +409,14 @@ $(document).ready(function() {
             if (easyTimer <= 1) {
                 clearInterval(timer);
                 $("#game-over-text").addClass("visible");
+                return false;
             } else {
                 easyTimer--;
                 secondsLeftDisplay.text(easyTimer);
             };
         }, 1000);
         secondsLeftDisplay.text(easyTimer);
+        return false;
     }
 
     /* ------------------------------------------------------------- Deactivation Mode */
