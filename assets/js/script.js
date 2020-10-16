@@ -216,7 +216,7 @@ $(document).ready(function() {
                 $(this).addClass("checkForMatch").removeClass('unmatched'); // Adding a temporary class 'checkForMatch' to check value with other checkForMatch card.
                 checkMatch();
             };
-            if (movesCount === 0) {
+            if ((movesCount === 0) && (secondCard.length === 0)) { // BUG FIX: Needed to make sure that array of secondCard is also empty so that this function is not running twice on second card flip.
                 switch (difficulty) {
                     case 'easy': easyCountDownTimer();
                     break;
@@ -268,6 +268,10 @@ $(document).ready(function() {
         clearInterval(timer);
         resetGame();
     }
+
+    /* ------------------------------------------------------------- Counting the User's Moves */
+
+    /* When the user flips 2 cards, this equates to 1 move.*/
 
     function countMoves() {
         let movesCounted = movesCount;
