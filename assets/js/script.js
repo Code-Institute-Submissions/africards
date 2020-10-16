@@ -276,17 +276,24 @@ $(document).ready(function() {
             setTimeout(function() {
                 $("#victory-text").addClass("visible");
             }, 500);
+            resetGame();
         } else {
             return false;
         }
     }
+
+    function gameOver() {
+        clearInterval(timer);
+        $("#game-over-text").addClass("visible");
+        resetGame();
+    }
+
 
     /* ------------------------------------------------------------- Counting the User's Moves */
 
     /* When the user flips 2 cards, this equates to 1 move.*/
 
     function countMoves() {
-        let movesCounted = 0;
         movesCounted = turns;
         if ((flipCount) % 2 === 0) {
             turns++;
@@ -320,7 +327,12 @@ $(document).ready(function() {
             secondCard = [];
         });
     }
-    resetGame();
+
+    /* ------------------------------------------------------------- Resetting the Game */
+
+    /* All classes are reset and the user will have to choose a level to
+    restart the game in. */
+
 
     function resetTimer(difficulty) {
         console.log(difficulty);
@@ -374,11 +386,9 @@ $(document).ready(function() {
 
     function hardCountDownTimer() {
         deactivatedMode()
-        var timer = setInterval(function() {
+        timer = setInterval(function() {
             if (hardTimer <= 1) {
-                clearInterval(timer);
-                $("#game-over-text").addClass("visible");
-                return false;
+                gameOver();
             } else {
                 hardTimer--;
                 secondsLeftDisplay.text(hardTimer);
@@ -389,11 +399,9 @@ $(document).ready(function() {
 
     function mediumCountDownTimer() {
         deactivatedMode()
-        var timer = setInterval(function() {
+        timer = setInterval(function() {
             if (mediumTimer <= 1) {
-                clearInterval(timer);
-                $("#game-over-text").addClass("visible");
-                return false;
+                gameOver();
             } else {
                 mediumTimer--;
                 secondsLeftDisplay.text(mediumTimer);
@@ -405,11 +413,9 @@ $(document).ready(function() {
 
     function easyCountDownTimer() {
         deactivatedMode()
-        var timer = setInterval(function() {
+        timer = setInterval(function() {
             if (easyTimer <= 1) {
-                clearInterval(timer);
-                $("#game-over-text").addClass("visible");
-                return false;
+                gameOver();
             } else {
                 easyTimer--;
                 secondsLeftDisplay.text(easyTimer);
