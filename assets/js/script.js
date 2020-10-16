@@ -276,7 +276,6 @@ $(document).ready(function() {
             setTimeout(function() {
                 $("#victory-text").addClass("visible");
             }, 500);
-            resetGame();
         } else {
             return false;
         }
@@ -285,7 +284,6 @@ $(document).ready(function() {
     function gameOver() {
         clearInterval(timer);
         $("#game-over-text").addClass("visible");
-        resetGame();
     }
 
 
@@ -307,52 +305,14 @@ $(document).ready(function() {
 
     /* All classes are reset and the user will have to choose a level to
     restart the game in. */
-
-    function resetGame() {
-        $(".overlay-text-small").click(function() {
-            // timer;
-            $('.overlay-text').removeClass('visible');
-            $('.card').removeClass('visible matched checkForMatch').addClass('unmatched');
-            $(".level-container button").prop("disabled", false).removeClass('deactivatedMode');
-            console.log(defaultLevelTime);
-            difficulty;
-            resetTimer(difficulty);
-            shuffleDeck();
-            turns = 0;
-            flipCount = 0;
-            movesCounted = 0;
-            // countMoves();
-            $('#moves').text(turns);
-            firstCard = [];
-            secondCard = [];
-        });
+    
+    function reset() {
+        location.reload(true);
     }
 
-    /* ------------------------------------------------------------- Resetting the Game */
-
-    /* All classes are reset and the user will have to choose a level to
-    restart the game in. */
-
-
-    function resetTimer(difficulty) {
-        console.log(difficulty);
-        if (difficulty = 'easy') {
-            var defaultLevelTime = secondsLeftDisplay.text(easyTimer);
-            defaultLevelTime;
-            // easyCountDownTimer();
-        } else if (difficulty = 'medium') {
-            var defaultLevelTime = secondsLeftDisplay.text(mediumTimer);
-            defaultLevelTime;
-            // mediumCountDownTimer();
-        } else if (difficulty === 'hard') {
-            var defaultLevelTime = secondsLeftDisplay.text(10);
-            defaultLevelTime;
-            // hardCountDownTimer();
-        } else {
-            return false;
-        }
-        clickHandlers();
-    }
+    $('.gameReset').click(function(){
+        reset();
+    });
 
     /* ------------------------------------------------------------- Loading the Timer */
 
@@ -382,7 +342,6 @@ $(document).ready(function() {
     /* Bug fix resulted in separating the countdowns into 3 types.
     These correspond to the levels and the function called depends
     on the level that the user selects. */
-
 
     function hardCountDownTimer() {
         deactivatedMode()
