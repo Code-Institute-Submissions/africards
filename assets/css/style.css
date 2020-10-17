@@ -204,6 +204,27 @@ https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_buttons_animate3 *
     border: none;
 }
 
+#easy-level.pressed {
+    background-color: #6e4949;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+    border: none;
+}
+
+#medium-level.pressed {
+    background-color: #6e4949;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+    border: none;
+}
+
+#hard-level.pressed {
+    background-color: #6e4949;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+    border: none;
+}
+
 /* ----------------------------------------------------------------- Light/Dark Mode Toggle */
 
 .theme-toggle-container {
