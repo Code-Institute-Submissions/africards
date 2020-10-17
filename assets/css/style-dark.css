@@ -171,11 +171,16 @@ body {
     border-radius: 10px;
     text-align: center;
 }
+
+.level-container-title {
+    box-sizing: border-box;
+    padding: 10px 0px;
+}
 /* Button animation effect from:
 https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_buttons_animate3 */
 .level-container button {
-    padding: 5px 25px;
-    margin: 20px 10px 25px;
+    padding: 5px 15px;
+    margin: 0px 5px 25px;
     height: 80%;
     font-size: 24px;
     text-align: center;
@@ -280,9 +285,20 @@ https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_buttons_animate3 *
 
 .info-button-container {
     display: inline-block;
+    padding: 0px 20px;
 }
 
 .info-button-container button {
+    background: none;
+    border: none;
+}
+
+.question-button-container {
+    display: inline-block;
+    padding: 0px 20px;
+}
+
+.question-button-container button {
     background: none;
     border: none;
 }
@@ -455,7 +471,7 @@ transition: transform 500ms ease-in-out;
     }
 }
 
-@media screen and (min-width: 415px) and (max-width: 533px) {
+@media screen and (min-width: 415px) and (max-width: 690px) {
     .card {
         width: 95px;
         height: 100px;
@@ -468,7 +484,7 @@ transition: transform 500ms ease-in-out;
 }
 
 
-@media screen and (min-width: 534px) and (max-width: 810px) {
+@media screen and (min-width: 691px) and (max-width: 810px) {
     .game-title {
         font-size: 3em;
     }
@@ -479,8 +495,12 @@ transition: transform 500ms ease-in-out;
     }
 
     .level-container button {
-        padding: 5px 15px;
-        margin: 8px 10px 15px;
+        margin: 20px 2px 25px;
+    }
+
+    .game-cards-container {
+        grid-template-columns: repeat(3, auto);
+        grid-gap: 10px;
     }
 }
 
@@ -492,11 +512,6 @@ transition: transform 500ms ease-in-out;
     .card {
         width: 105px;
         height: 115px;
-    }
-
-    .level-container button {
-        padding: 5px 15px;
-        margin: 8px 5px 15px;
     }
 }
 
