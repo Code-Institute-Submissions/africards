@@ -324,16 +324,25 @@ $(document).ready(function() {
             difficulty = 'easy';
             var defaultLevelTime = secondsLeftDisplay.text(easyTimer);
             defaultLevelTime;
+            $('#easy-level').addClass('pressed');
+            $('#medium-level').removeClass('pressed');
+            $('#hard-level').removeClass('pressed');
         });
         $('#medium-level').click(function() {
             difficulty = 'medium';
             var defaultLevelTime = secondsLeftDisplay.text(mediumTimer);
             defaultLevelTime;
+            $('#easy-level').removeClass('pressed');
+            $('#medium-level').addClass('pressed');
+            $('#hard-level').removeClass('pressed');
         });
         $('#hard-level').click(function() {
             difficulty = 'hard';
             var defaultLevelTime = secondsLeftDisplay.text(hardTimer);
             defaultLevelTime;
+            $('#easy-level').removeClass('pressed');
+            $('#medium-level').removeClass('pressed');
+            $('#hard-level').addClass('pressed');
         });
     };
 
