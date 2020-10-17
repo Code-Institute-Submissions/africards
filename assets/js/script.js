@@ -353,7 +353,7 @@ $(document).ready(function() {
     on the level that the user selects. */
 
     function hardCountDownTimer() {
-        deactivatedMode()
+        hardDeactivatedMode()
         timer = setInterval(function() {
             if (hardTimer <= 1) {
                 gameOver();
@@ -366,7 +366,7 @@ $(document).ready(function() {
     }
 
     function mediumCountDownTimer() {
-        deactivatedMode()
+        mediumDeactivatedMode()
         timer = setInterval(function() {
             if (mediumTimer <= 1) {
                 gameOver();
@@ -380,7 +380,7 @@ $(document).ready(function() {
     }
 
     function easyCountDownTimer() {
-        deactivatedMode()
+        easyDeactivatedMode()
         timer = setInterval(function() {
             if (easyTimer <= 1) {
                 gameOver();
@@ -398,11 +398,30 @@ $(document).ready(function() {
     /* As the timer counts down, the user will be unable to change
     levels mid-game. */
 
-    function deactivatedMode() {
-        //Disables buttons
-        $(".level-container button").prop("disabled", true).addClass('deactivatedMode');
-        return true;
+    function easyDeactivatedMode() {
+    //Disables buttons
+    $("#easy-level").prop("disabled", true);
+    $("#medium-level").prop("disabled", true).addClass('deactivatedMode');
+    $("#hard-level").prop("disabled", true).addClass('deactivatedMode');
+    return true;
     }
+
+    function mediumDeactivatedMode() {
+    //Disables buttons
+    $("#easy-level").prop("disabled", true).addClass('deactivatedMode');
+    $("#medium-level").prop("disabled", true);
+    $("#hard-level").prop("disabled", true).addClass('deactivatedMode');
+    return true;
+    }
+
+    function hardDeactivatedMode() {
+    //Disables buttons
+    $("#easy-level").prop("disabled", true).addClass('deactivatedMode');
+    $("#medium-level").prop("disabled", true).addClass('deactivatedMode');
+    $("#hard-level").prop("disabled", true);
+    return true;
+    }
+
 
     /* ------------------------------------------------------------- Light / Dark Modes */
 
