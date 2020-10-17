@@ -72,9 +72,11 @@ var secondCard = [];
 
 var easyTimer = 90;
 var mediumTimer = 60;
-var hardTimer = 8;
+var hardTimer = 30;
 
 var difficulty = 'easy';
+
+var checking = false;
 
 var timer;
 var defaultLevelTime;
@@ -117,9 +119,18 @@ $(document).ready(function() {
     selects "Nigeria", the game cards will have the Nigerian flag on
     the back face and cultural images on the front face.*/
 
+    function getCountryName(userCountry) {
+        switch (userCountry) {
+            case 'south-africa':
+                return 'South Africa';
+            default:
+                return userCountry.charAt(0).toUpperCase() + userCountry.substring(1);
+        }
+    }
+    
     function setUpUser(userCountry, userName) {
         $('#user-name').text(userName);
-        $('#user-country').text("Welcome" + " To " + userCountry + "!");
+        $('#user-country').text("Welcome" + " To " + getCountryName(userCountry) + "!");
 
         if (userCountry === 'south-africa') {
             $('#user-country-pic').attr('src', 'assets/images/flags/south-africa.png'); // Changes the flag picture underneath the "Hi + userNeme"
@@ -177,7 +188,6 @@ $(document).ready(function() {
         $('.card').each(function(index) {
             $(this).attr('data-card-value', cards[index].no); // Changes the data card value number to match the names of the photos e.g. image one.jpg has data-card-value = 1.
         });
-        // debugger;
         $('.card-front-image').each(function(index) {
             $(this).attr('src', 'assets/images/' + userCountry + '/' + cards[index].img); // Changes images on the card's front to those of the user's chosen country.
         });
@@ -196,7 +206,6 @@ $(document).ready(function() {
 
     function clickHandlers() {
         $('#save-button').on('click', function() { // This code is for the User Profile Modal. It handles the event after clicking "save".
-                // debugger;
             let userName = $('#userName').val();
             let userCountry = $('#inputCountry').val();
 
@@ -204,7 +213,6 @@ $(document).ready(function() {
             localStorage.setItem("userName", userName);
             location.reload();
             setUpUser(userCountry, userName);
-            // debugger;
             $('#userProfileModal').modal('hide');
         });
         
@@ -212,14 +220,15 @@ $(document).ready(function() {
         /* This code allows only the cards with the unmatched class
         to be selected. If matched, the function does not apply.*/
         $('body').delegate('.unmatched', "click", function() {
+            if (checking) {
+                return;
+            }
             $(this).addClass("visible");
             if (firstCard.length === 0) {
                 firstCard.push($(this).data('cardValue'));
-                // flipCount++;
                 $(this).addClass("checkForMatch").removeClass('unmatched'); // Adding a temporary class 'checkForMatch' which will be removed once another card is picked.
             } else if (firstCard.length >= 1 && secondCard.length === 0){ // Once the firstCard.length is more than 1, the value of the next card will be pushed to secondCard.
                 secondCard.push($(this).data('cardValue'));
-                // flipCount++;
                 $(this).addClass("checkForMatch").removeClass('unmatched'); // Adding a temporary class 'checkForMatch' to check value with other checkForMatch card.
                 checkMatch();
             } else {
@@ -254,11 +263,13 @@ $(document).ready(function() {
             $(".visible").addClass("matched").removeClass("unmatched checkForMatch");
             firstCard = [];
             secondCard = [];
-        } else {
+        } else { 
+            checking = true; // BUG FIX: This boolean stops the user from clicking a card for as long as the two cards that are being checked are visible (click event handlers stop for half a second).
             setTimeout(function() {
                 $(".checkForMatch").removeClass("visible checkForMatch").addClass('unmatched');
                 firstCard = [];
                 secondCard = [];
+                checking = false;
             }, 500)
         };
         countMoves();
@@ -399,7 +410,7 @@ $(document).ready(function() {
     levels mid-game. */
 
     function easyDeactivatedMode() {
-    //Disables buttons
+    //Disables buttons for when game difficulty = 'easy'
     $("#easy-level").prop("disabled", true);
     $("#medium-level").prop("disabled", true).addClass('deactivatedMode');
     $("#hard-level").prop("disabled", true).addClass('deactivatedMode');
@@ -407,7 +418,7 @@ $(document).ready(function() {
     }
 
     function mediumDeactivatedMode() {
-    //Disables buttons
+    //Disables buttons for when game difficulty = 'medium'
     $("#easy-level").prop("disabled", true).addClass('deactivatedMode');
     $("#medium-level").prop("disabled", true);
     $("#hard-level").prop("disabled", true).addClass('deactivatedMode');
@@ -415,7 +426,7 @@ $(document).ready(function() {
     }
 
     function hardDeactivatedMode() {
-    //Disables buttons
+    //Disables buttons for when game difficulty = 'hard'
     $("#easy-level").prop("disabled", true).addClass('deactivatedMode');
     $("#medium-level").prop("disabled", true).addClass('deactivatedMode');
     $("#hard-level").prop("disabled", true);
