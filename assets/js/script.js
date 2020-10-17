@@ -119,7 +119,7 @@ $(document).ready(function() {
     selects "Nigeria", the game cards will have the Nigerian flag on
     the back face and cultural images on the front face.*/
 
-    function getCountryName(userCountry) {
+    function getCountryName(userCountry) { // This ensures that the country returned is in sentence case with the first letter capitalised.
         switch (userCountry) {
             case 'south-africa':
                 return 'South Africa';
@@ -150,7 +150,7 @@ $(document).ready(function() {
         } else if (userCountry === 'nigeria') {
             $('#user-country-pic').attr('src', 'assets/images/flags/nigeria.png');
             $('.card-back-image').attr('src', 'assets/images/flags/nigeria.png');
-        };
+        }
         shuffleDeck();
     }
 
@@ -206,8 +206,8 @@ $(document).ready(function() {
 
     function clickHandlers() {
         $('#save-button').on('click', function() { // This code is for the User Profile Modal. It handles the event after clicking "save".
-            let userName = $('#userName').val();
-            let userCountry = $('#inputCountry').val();
+            userName = $('#userName').val();
+            userCountry = $('#inputCountry').val();
 
             localStorage.setItem("userCountry", userCountry);
             localStorage.setItem("userName", userName);
@@ -233,7 +233,7 @@ $(document).ready(function() {
                 checkMatch();
             } else {
                 return false;
-            };
+            }
 
             if ((turns === 0) && (secondCard.length === 0)) { // BUG FIX: Needed to make sure that array of secondCard is also empty so that this function is not running twice on second card flip.
                 switch (difficulty) {
@@ -270,8 +270,8 @@ $(document).ready(function() {
                 firstCard = [];
                 secondCard = [];
                 checking = false;
-            }, 500)
-        };
+            }, 500);
+        }
         countMoves();
         gameWin();
     }
@@ -334,7 +334,6 @@ $(document).ready(function() {
         $('#easy-level').click(function() {
             difficulty = 'easy';
             defaultLevelTime = secondsLeftDisplay.text(easyTimer);
-            defaultLevelTime;
             $('#easy-level').addClass('pressed');
             $('#medium-level').removeClass('pressed');
             $('#hard-level').removeClass('pressed');
@@ -342,7 +341,6 @@ $(document).ready(function() {
         $('#medium-level').click(function() {
             difficulty = 'medium';
             defaultLevelTime = secondsLeftDisplay.text(mediumTimer);
-            defaultLevelTime;
             $('#easy-level').removeClass('pressed');
             $('#medium-level').addClass('pressed');
             $('#hard-level').removeClass('pressed');
@@ -350,12 +348,11 @@ $(document).ready(function() {
         $('#hard-level').click(function() {
             difficulty = 'hard';
             defaultLevelTime = secondsLeftDisplay.text(hardTimer);
-            defaultLevelTime;
             $('#easy-level').removeClass('pressed');
             $('#medium-level').removeClass('pressed');
             $('#hard-level').addClass('pressed');
         });
-    };
+    }
 
     /* ------------------------------------------------------------- Running the Timer */
 
@@ -364,41 +361,41 @@ $(document).ready(function() {
     on the level that the user selects. */
 
     function hardCountDownTimer() {
-        hardDeactivatedMode()
+        hardDeactivatedMode();
         timer = setInterval(function() {
             if (hardTimer <= 1) {
                 gameOver();
             } else {
                 hardTimer--;
                 secondsLeftDisplay.text(hardTimer);
-            };
+            }
         }, 1000);
         secondsLeftDisplay.text(hardTimer);
     }
 
     function mediumCountDownTimer() {
-        mediumDeactivatedMode()
+        mediumDeactivatedMode();
         timer = setInterval(function() {
             if (mediumTimer <= 1) {
                 gameOver();
             } else {
                 mediumTimer--;
                 secondsLeftDisplay.text(mediumTimer);
-            };
+            }
         }, 1000);
         secondsLeftDisplay.text(mediumTimer);
         return false;
     }
 
     function easyCountDownTimer() {
-        easyDeactivatedMode()
+        easyDeactivatedMode();
         timer = setInterval(function() {
             if (easyTimer <= 1) {
                 gameOver();
             } else {
                 easyTimer--;
                 secondsLeftDisplay.text(easyTimer);
-            };
+            }
         }, 1000);
         secondsLeftDisplay.text(easyTimer);
         return false;
@@ -445,4 +442,4 @@ $(document).ready(function() {
             lightDarkSwitch.attr("href", "assets/css/style.css");
         }
     });
-})
+});
