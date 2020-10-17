@@ -333,7 +333,7 @@ $(document).ready(function() {
     function loadTimer() {
         $('#easy-level').click(function() {
             difficulty = 'easy';
-            var defaultLevelTime = secondsLeftDisplay.text(easyTimer);
+            defaultLevelTime = secondsLeftDisplay.text(easyTimer);
             defaultLevelTime;
             $('#easy-level').addClass('pressed');
             $('#medium-level').removeClass('pressed');
@@ -341,7 +341,7 @@ $(document).ready(function() {
         });
         $('#medium-level').click(function() {
             difficulty = 'medium';
-            var defaultLevelTime = secondsLeftDisplay.text(mediumTimer);
+            defaultLevelTime = secondsLeftDisplay.text(mediumTimer);
             defaultLevelTime;
             $('#easy-level').removeClass('pressed');
             $('#medium-level').addClass('pressed');
@@ -349,7 +349,7 @@ $(document).ready(function() {
         });
         $('#hard-level').click(function() {
             difficulty = 'hard';
-            var defaultLevelTime = secondsLeftDisplay.text(hardTimer);
+            defaultLevelTime = secondsLeftDisplay.text(hardTimer);
             defaultLevelTime;
             $('#easy-level').removeClass('pressed');
             $('#medium-level').removeClass('pressed');
