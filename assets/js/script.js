@@ -168,7 +168,6 @@ $(document).ready(function() {
         var i = 0;
         for (i; i < cards.length; i++) {
             random = Math.round(Math.random() * i);
-            console.log(random);
             temp = cards[i];
             cards[i] = cards[random];
             cards[random] = temp;
