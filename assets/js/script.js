@@ -82,8 +82,7 @@ var timer;
 var defaultLevelTime;
 
 var secondsLeftDisplay = $("#seconds");
-var turns = 0;
-var movesCounted = 0;
+var movesCount = 0;
 var flipCount = 0;
 
 var userCountry = localStorage.getItem("userCountry");
@@ -169,6 +168,7 @@ $(document).ready(function() {
         var i = 0;
         for (i; i < cards.length; i++) {
             random = Math.round(Math.random() * i);
+            console.log(random);
             temp = cards[i];
             cards[i] = cards[random];
             cards[random] = temp;
@@ -235,7 +235,7 @@ $(document).ready(function() {
                 return false;
             }
 
-            if ((turns === 0) && (secondCard.length === 0)) { // BUG FIX: Needed to make sure that array of secondCard is also empty so that this function is not running twice on second card flip.
+            if ((movesCount === 0) && (secondCard.length === 0)) { // BUG FIX: Needed to make sure that array of secondCard is also empty so that this function is not running twice on second card flip.
                 switch (difficulty) {
                     case 'easy': easyCountDownTimer();
                     break;
@@ -303,13 +303,12 @@ $(document).ready(function() {
     /* When the user flips 2 cards, this equates to 1 move.*/
 
     function countMoves() {
-        movesCounted = turns;
         if ((flipCount) % 2 === 0) {
-            turns++;
+            movesCount++;
         } else {
             return false;
         }
-        $('#moves').text(turns);
+        $('#moves').text(movesCount);
     }
 
     /* ------------------------------------------------------------- Resetting the Game */
