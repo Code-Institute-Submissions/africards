@@ -122,6 +122,8 @@ $(document).ready(function() {
         switch (userCountry) {
             case 'south-africa':
                 return 'South Africa';
+            case null:
+                return 'South Africa';
             default:
                 return userCountry.charAt(0).toUpperCase() + userCountry.substring(1);
         }
