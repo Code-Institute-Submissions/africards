@@ -312,12 +312,12 @@ body {
     border: none;
 }
 
-.question-button-container {
+.key-info-button-container {
     display: inline-block;
     padding: 0px 20px;
 }
 
-.question-button-container button {
+.key-info-button-container button {
     background: none;
     border: none;
 }
@@ -456,7 +456,7 @@ body {
         width: 80px;
         height: 85px;
     }
-    .question-button-container {
+    .key-info-button-container {
         padding: 0px;
     }
     .info-button-container {
@@ -531,4 +531,15 @@ body {
 .deactivatedMode {
     opacity: 0.4;
     cursor: wait;
+}
+
+/* ----------------------------------------------------------------- "Learn More About Africa" Modal Carousel */
+
+.learn img {
+    width: 100%;
+    height: auto;
+} 
+
+.modal-body.learn {
+    padding: 0px;
 }
