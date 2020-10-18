@@ -1,5 +1,4 @@
 @import url('https://fonts.googleapis.com/css2?family=Barriecito&display=swap');
-
 html {
     min-height: 100vh;
     cursor: url("../cursors/africa-dark.cur"), auto;
@@ -116,6 +115,7 @@ body {
 }
 
 /* ----------------------------------------------------------------- Modal Styling */
+
 .modal-content.container-fluid {
     padding-left: 0px;
     padding-right: 0px;
@@ -170,14 +170,14 @@ body {
     margin-top: 15px;
     border-radius: 10px;
     text-align: center;
+    padding: 0px;
 }
 
 .level-container-title {
     box-sizing: border-box;
     padding: 10px 0px;
 }
-/* Button animation effect from:
-https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_buttons_animate3 */
+
 .level-container button {
     padding: 5px 15px;
     margin: 0px 5px 25px;
@@ -233,7 +233,6 @@ https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_buttons_animate3 *
     width: 100%;
     height: 50px;
     margin-top: 15px;
-    margin-bottom: 20px;
     border-radius: 10px;
 }
 
@@ -270,13 +269,13 @@ https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_buttons_animate3 *
     transition: transform 0.2s linear;
 }
 
-.theme-toggle:checked + .label .switch {
+.theme-toggle:checked+.label .switch {
     transform: translateX(24px);
 }
 
-/* ----------------------------------------------------------------- Game Control Icons Container */
+/* ----------------------------------------------------------------- Game Key Information Icons Container */
 
-.controls-container {
+.key-info-container {
     background-color: #6e4949;
     border-radius: 10px;
     margin-top: 15px;
@@ -285,7 +284,7 @@ https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_buttons_animate3 *
     padding: 10px 0px;
 }
 
-.controls-container i {
+.key-info-container i {
     color: #e6b145;
     margin: 0px 20px;
     border: 2px solid #e6b145;
@@ -298,7 +297,7 @@ https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_buttons_animate3 *
     line-height: 25px;
 }
 
-.controls-container i:hover {
+.key-info-container i:hover {
     color: #2f1818;
     font-weight: 700;
     background-color: #e6b145;
@@ -322,6 +321,15 @@ https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_buttons_animate3 *
 .question-button-container button {
     background: none;
     border: none;
+}
+
+/* ----------------------------------------------------------------- Caret Down Icon Container */
+
+.caret-down-container {
+    text-align: center;
+    font-size: 4em;
+    height: 10%;
+    display: none;
 }
 
 /* ----------------------------------------------------------------- Game Board Container */
@@ -405,11 +413,6 @@ https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_buttons_animate3 *
     transform: rotateY(0);
 }
 
-/* .card:hover .card-back img {
-transform: scale(1.2);
-transition: transform 500ms ease-in-out;
-} */
-
 .card-face {
     position: absolute;
     width: 100%;
@@ -425,70 +428,66 @@ transition: transform 500ms ease-in-out;
     transition: transform 500ms ease-in-out;
 }
 
+
 /* ----------------------------------------------------------------- Media Queries */
 
 @media (max-width: 320px) {
     .game-controls {
         height: 100%;
     }
-
     .game-title {
         font-size: 2em;
     }
-
     .game-country {
         width: 100%;
         font-size: 2em;
     }
-
     #user-country-pic {
         height: 60px;
     }
-
     .game-cards-container {
         grid-template-columns: repeat(3, auto);
         grid-gap: 10px;
     }
-
     .game-info-container {
         align-items: center;
         margin: 10px 0px 0px;
         padding: 0px 10px;
         font-size: 80%;
     }
-
     .card {
         width: 80px;
         height: 85px;
+    }
+    .question-button-container {
+        padding: 0px;
+    }
+    .info-button-container {
+        padding: 0px;
     }
 }
 
 @media screen and (min-width: 321px) and (max-width: 414px) {
-
-    .game-title {
-        font-size: 2em;
-    }
-
     .game-country {
         width: 100%;
         font-size: 2em;
     }
-
     .game-cards-container {
         grid-template-columns: repeat(3, auto);
         grid-gap: 10px;
     }
-
     .game-info-container {
         align-items: center;
         margin: 10px 0px 0px;
         padding: 0px 10px;
         font-size: 80%;
     }
-
     .card {
         width: 80px;
         height: 85px;
+    }
+    .caret-down-container {
+        display: block;
     }
 }
 
@@ -497,28 +496,23 @@ transition: transform 500ms ease-in-out;
         width: 95px;
         height: 100px;
     }
-
     .game-cards-container {
         grid-template-columns: repeat(3, auto);
         grid-gap: 10px;
     }
 }
 
-
 @media screen and (min-width: 691px) and (max-width: 810px) {
     .game-title {
         font-size: 3em;
     }
-
     .card {
         width: 105px;
         height: 115px;
     }
-
     .level-container button {
-        margin: 20px 2px 25px;
+        margin: 0px 2px 25px;
     }
-
     .game-cards-container {
         grid-template-columns: repeat(3, auto);
         grid-gap: 10px;
@@ -529,7 +523,6 @@ transition: transform 500ms ease-in-out;
     .game-title {
         font-size: 3.5em;
     }
-
     .card {
         width: 105px;
         height: 115px;
