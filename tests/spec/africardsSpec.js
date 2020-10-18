@@ -14,7 +14,7 @@
                 return movesCount + 1; 
             }
         });
-        it("should record add 1 more count to movesCount", function() {
+        it("should add 1 more count to movesCount", function() {
         var flipCount = 16;
         var movesCount = 7;
         expect(countMoves(flipCount, movesCount)).toEqual(8);
@@ -64,6 +64,6 @@
             var temp = 0;
             var i = 2;
             cards = [1, 2, 3, 4, 5, 6];
-            expect(shuffleDeck(cards)).not.toEqual([1,2,3,4,5,6]);
+            expect(shuffleDeck(cards)).not.toEqual([1, 2, 3, 4, 5, 6]);
         })
     })
