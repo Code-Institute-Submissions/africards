@@ -107,6 +107,10 @@ body {
     cursor: pointer;
 }
 
+#user-country {
+    font-size: 25px;
+}
+
 .game-country {
     box-sizing: border-box;
     max-height: 20%;
