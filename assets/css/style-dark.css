@@ -171,12 +171,12 @@ body {
     margin-top: 15px;
     border-radius: 10px;
     text-align: center;
-    padding: 0px;
+    padding: 10px;
 }
 
 .level-container-title {
     box-sizing: border-box;
-    padding: 10px 0px;
+    padding: 10px 0px 0px;
 }
 
 .level-container button {
@@ -335,7 +335,14 @@ body {
 
 .key-info-button:active {
     border: 1px solid #e2eea9;
-} 
+}
+
+button.key-info-button,
+button.key-info-button:focus,
+button.key-info-button:hover,
+button.key-info-button:active {
+    outline: none;
+}
 
 .info-button-container {
     display: inline-block;

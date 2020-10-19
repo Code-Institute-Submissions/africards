@@ -336,6 +336,13 @@ body {
     border: 1px solid #e2eea9;
 } 
 
+button.key-info-button,
+button.key-info-button:focus,
+button.key-info-button:hover,
+button.key-info-button:active {
+    outline: none;
+}
+
 .info-button-container {
     display: inline-block;
     padding: 0px 20px;
