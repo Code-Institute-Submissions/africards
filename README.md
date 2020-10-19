@@ -218,7 +218,8 @@ Like the "Game Over" event, this `div` also takes the whole screen so the user c
 #### User Feedback
 
 ### 4.3. Code Validation
-All Code has been validated and you can find screenshots [here](https://github.com/jerhabor/africards/tree/master/assets/readme/validator).
+All Code has been validated and you can find screenshots [here](https://github.com/jerhabor/africards/tree/master/assets/readme/validator). 
+Jasmine Tests were also done on card shuffling, loading of the timer and the moves count. These are the main elements of the game so it helped to refactor the code. You can find the content [here](https://github.com/jerhabor/africards/tree/master/tests).
 
 ### 4.4. Test on Different Browsers
 
