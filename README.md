@@ -1,61 +1,51 @@
-<img src="assets/images/africards-mockup.PNG" alt="" width="100%" height="auto"/>
+<img src="assets/images/africards-mockup.png" alt="" width="100%" height="auto"/>
  
-# Africards
+# Africards 
+
+Africards was birthed in light of the Black Lives Matter movement and in celebration of Black History Month. It is an educational and interactive website. The site hosts a card matching game and provides the opportunity for users to learn about the African Continent.
+
+Holding a whopping 54 countries, Africa stands as the world's second-largest continent. For this first phase of deployment, only six African countries have been added to the game. These have been selected from the different parts of Africa namely:
+- North Africa
+- East Africa
+- South Africa (also a country)
+- West Africa
 
 The website is deployed to GitHub Pages and can be viewed [here](https://jerhabor.github.io/africards/index.html).
 
 ## Table of Contents
 
-* [1. User Experience - UX](#1-user-experience---ux)
-    + [1.1. User Stories](#11-user-stories)
-    + [1.2. Structure and Skeleton Phases](#12-structure-and-skeleton-phases)
-* [2. Features](#2-features)
-    + [2.1. General Features](#21-general-features)
-    + [2.2. Features Left to Implement](#22-features-left-to-implement)
-* [3. Technologies Used](#3-technologies-used)
-* [4. Testing](#4-testing)
-    + [4.1. Testing Features](#41-testing-features)
-    + [4.2. Achievement of User Stories](#42-achievement-of-user-stories)
-    + [4.3. Code Validation](#43-code-validation)
-    + [4.4. Test on Different Browsers](#44-test-on-different-browsers)
-    + [4.5. Test on Different Devices](#45-test-on-different-devices)
-    + [4.6. Bugs and Problems](#46-bugs-and-problems)
-* [5. Deployment](#5-deployment)
-* [6. Credits](#6-credits)
-    + [6.1. Content](#61-content)
-    + [6.2. Media](#62-media)
-    + [6.3. Acknowledgements](#63-acknowledgements)
-
-<small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
-
-
 ***
 
 ## 1. User Experience - UX
 
+The primary target audience are children, teenagers and young-adults as the educational aspects are quite basic. 
+
+Before the conception of the idea, there were not many culturally-themed games that also provided adequate learning benefits; aside from memory practice. I wanted to create something that is different and adds more value than what was expected. However, I could not put my finger on exactly what just yet.
 
 ### 1.1. User Stories
 
+As part of the _Strategy_ plane of UX, I had to consult several potential users to gather their expectations of this project. This allowed me to develop and prioritise ideas to produce something valuable.
+
 **User Story 1:**
+> As a school student, I would like to see some quick facts of Africa as it could help me with my history lessons.
 
 **User Story 2:**
+> As the parent of a child, I would like the website to be interactive for my child; so that they stay engaged.
 
 **User Story 3:**
+> As a young adult, I would like the website to be accessible and responsive on my gadgets namely: tablet, laptop and phone.
 
 **User Story 4:**
+> As an adult, I would like to see a variety of pictures showing how culturally rich Africa is.
 
 **User Story 5:**
+> As an Africa man, I would like to see different African countries represented in good light as there is so much for the rest of the world to see and hear.
 
-**User Story 6:**
-
-**User Story 7:**
-
-I have compiled my project development files in a folder which can be viewed [here]().
+Once I had heard these stories, I compares my ideas to the requirements of the potential users and developed a mindmap to further dive into the site content. Then I made a collection of various African related images and created a moodboard for definite features. You can find all my project development files in a folder which can be viewed [here]().
 
 ### 1.2. Structure and Skeleton Phases
 
-I used [Balsamiq Wireframes](https://balsamiq.com/) to construct my mockups. However, there were limited features on this software to illustrate what I intended to present (e.g. colours, animation etc). These extra features were noted down and I decided to progress with building the outline/template of the website by block commenting out section headings in my GitPod workspace.
-
+[Balsamiq Wireframes](https://balsamiq.com/) was used to create the mockups. However, there are limitations to the way I could present information on the wireframe (e.g. unable to use colours, animation etc). Instead, I documented these extra features progressed with building the base structure of the website by block commenting out section headings in the workspace.
 
 ## 2. Features
 
@@ -66,6 +56,10 @@ This section will detail the _Surface_ phase of the project.
 ### 2.1. Features
 
 ### 2.2. Features Left to Implement
+
+- African music/sounds effects
+- Light and Dark Toggle animated transitions
+
 
 ## 3. Technologies Used
 
@@ -81,6 +75,7 @@ This section will detail the _Surface_ phase of the project.
 - [Jasmine](https://jasmine.github.io/)
 - [JQuery](https://jquery.com/) - Africards uses the JQuery Framework in its script. It also assists Bootstrap functionalities e.g. the loading of modal forms. 
 - [Balsamiq](https://balsamiq.com/) - Used to construct my wireframes in the skeleton phase of UX.
+- [Mindmup](https://app.mindmup.com/) - Used to brainstorm ideas in the early stages of the project development.
 
 
 ## 4. Testing
@@ -125,6 +120,21 @@ Still visible despite being set to none
 
 #### 4.6.2 Possible slow loading
 CDN is used so if internet connection is slow, the page could also load slowly. Not intended to affect UX as script is placed at the end of the body element.
+
+#### 4.6.3. Issues with CSS Grid in IE
+Due to the use of the CSS Grid, the cards do not dislay cards well in Internet Explorer and older versions of Mozilla because they do not read the `grid-template-columns` property. I initially tried to solve by incorporating:
+
+~~~
+-webkit-grid-columns: 1fr 1fr 1fr;
+-moz-grid-columns: 1fr 1fr 1fr;
+-ms-grid-columns: 1fr 1fr 1fr;
+-o-grid-columns: 1fr 1fr 1fr;
+~~~
+
+However it came to my attention that the support is quite scarce. I am now currently looking at how the card structure could be better distributed without the use of grid. This is so that in the next phase of releasing new features; this is included. Currently looking into the use of the [Autoprefixer](https://css-tricks.com/css-grid-in-ie-css-grid-and-the-new-autoprefixer/)
+
+
+
 
 
 ## 5. Deployment
